@@ -20,6 +20,8 @@ public class SongController {
 	public String song(Model model, @RequestParam(value="id", defaultValue="1") int id) {
 		Song s = songDao.findById(id);
 		model.addAttribute("name", s.getName());
+		// "year"
+		// "artist_name"
 		return "displaySong";
 	}
 }
