@@ -16,14 +16,13 @@ public class SongController {
 
 	@Autowired
 	private SongRepository songDao;
+	@Autowired 
 	private ArtistRepository artistDao;
 	
 	@RequestMapping("/song")
 	public String song(Model model, @RequestParam(value="id", defaultValue="1") int id) {
 		Song s = songDao.findById(id);
 		model.addAttribute("name", s.getName());
-		// "year"
-		// "artist_name"
 		return "displaySong";
 	}
 
@@ -35,9 +34,7 @@ public class SongController {
 		Artist a = artistDao.findById(artistId);
 		model.addAttribute("name", s.getName());
 		model.addAttribute("year", s.getYear());
-		model.addAttribute("artistName", a.getName());
-		// "year"
-		// "artist_name"
+		model.addAttribute("artist_name", a.getName());
 		return "displaySong";
 	}
 	
