@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Songs by Artist</title>
+</head>
+<body>
+<h1 th:text="'User page for ' + ${user_name}"></h1>
+<h3 th:text="${user_email}"></h3>
+
+<h2>Playlists</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Song count</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="playlist : ${playlists}">
+        <td th:text="${playlist.name}"></td>
+        <td th:text="${playlist.songCount}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
