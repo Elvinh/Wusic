@@ -17,7 +17,7 @@ public class ArtistRepository {
 	private JdbcTemplate jdbcTemplate;
 	
 	public Artist findById(int id) { 
-		return (Artist) jdbcTemplate.queryForObject("SELECT * FROM artist where artist_id = ?", new Object[] {id}, new ArtistMapper());
+		return (Artist) jdbcTemplate.queryForObject("SELECT * FROM artist WHERE artist_id = ?", new Object[] {id}, new ArtistMapper());
 	}
 	
 	class ArtistMapper implements RowMapper {
@@ -32,7 +32,5 @@ public class ArtistRepository {
 			
 			return artist;
 		}
-		
 	}
-	
 }
