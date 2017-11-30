@@ -26,10 +26,14 @@ public class UserInfoController {
 	public String song(Model model, @RequestParam(value="id", defaultValue="1") int id) {
 		User user = userDao.findById(id);
 		List<Playlist> playlistsByUser = playlistByUserDao.playlistsByUser(id);
+		List<User> userFollowing = userDao.getUserFollowing(id);
+		List<User> userFollowers = userDao.getUserFollowers(id);
 
 		model.addAttribute("user_name", user.getName());
 		model.addAttribute("user_email", user.getEmail());
-		model.addAttribute("playlists", playlistsByUser);
+		model.addAttribute("playlists", playlistsByUser);		
+		model.addAttribute("followers", userFollowers);
+		model.addAttribute("followings", userFollowing);
 		
 		return "displayUserInfo";
 	}
