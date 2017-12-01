@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head lang="en" th:include="fragments/header :: header">
+<head>
 </head>
 <body>
+	<div lang="en" th:replace="fragments/header :: header"> </div>
+
     <h1 th:text="'Song: ' + ${name} + ' Year:' + ${year}"> </h1>
     <h1 th:text="'Artist:' + ${artist_name}" ></h1>
 </body>

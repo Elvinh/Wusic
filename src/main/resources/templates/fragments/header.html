@@ -1,12 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
-<body>
-<div th:fragment="header">
-	<p>hey</p>
-</div>
 
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Cinzel" rel="stylesheet" type="text/css"/>
+    
+</head>
+
+<body>
+<header th:fragment="header" class="page-head">
+		<h1><a href="home">WUSIC</a></h1>
+		<div class="dropdown">
+			<button class="dropbtn">Browse</button>
+			<div class="dropdown-content">
+				<form method="get" action="google.com" >
+		    		<button class="link" name="browseBy" value="title">By Title</button>
+		    		<input type="hidden" name="orderType" value="DESC"></input>
+				</form>
+			</div>
+		</div>
+		
+			<form class="searchBar" method="get" action="">
+				<input type="hidden" name="browseBy" value="advSearch"></input>
+				<input type="text" name="advTitle" placeholder="Search for movie titles..."></input>
+			</form>
+			
+			
+			<div class = "advSearch">
+				<a href = "advSearch">Advanced Search</a>
+			</div>
+			
+			<!--<c:set var="id" scope="session" value="${user}"/>
+			<c:if test="${empty id}"> 
+			-->
+			<div class="login">
+				<a href="login">LOGIN</a>
+			</div>
+			
+			<!--   <c:set var="id" scope="session" value="${user}"/>
+			<c:if test="${not empty id}">
+				<div class="logout">
+						<a href="logout">LOGOUT</a>	
+				</div>-->
+			
+			<div class = "myCart">
+				<a href = "google.com">
+
+					</a>
+				<i></i>
+			</div>
+		
+		
+</header>
 </body>
 </html>

@@ -1,29 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Cinzel" rel="stylesheet" type="text/css"/>
     <title>Songs by Artist</title>
+    <link th:href="@{css/headerLayout.css}" rel="stylesheet" />
+	<style>
+		.content {
+			margin-top: 80px;
+		}
+	</style>
 </head>
 <body>
-<h1 th:text="'Songs by ' + ${artist_name}"></h1>
-<table>
-
-    <thead>
-    <tr>
-        <th>Title</th>
-        <th>Year</th>
-        <th>Duration</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <tr th:each="song : ${songs}">
-        <td th:text="${song.title}"></td>
-        <td th:text="${song.year}"></td>
-         <td th:text="${song.duration}"></td>
-    </tr>
-    </tbody>
-
-</table>
+	<div lang="en" th:replace="fragments/header :: header"> </div>
+	<div class="content">
+		<h1 th:text="'Songs by ' + ${artist_name}"></h1>
+		<table>
+		
+		    <thead>
+		    <tr>
+		        <th>Title</th>
+		        <th>Year</th>
+		        <th>Duration</th>
+		    </tr>
+		    </thead>
+		
+		    <tbody>
+		    <tr th:each="song : ${songs}">
+		        <td th:text="${song.title}"></td>
+		        <td th:text="${song.year}"></td>
+		         <td th:text="${song.duration}"></td>
+		    </tr>
+		    </tbody>
+		</table>
+	</div>
 </body>
 </html>
