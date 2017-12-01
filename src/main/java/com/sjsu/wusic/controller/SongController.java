@@ -28,7 +28,7 @@ public class SongController {
 
 	@RequestMapping("/songandartist")
 	public String song(Model model, @RequestParam(value="songId", defaultValue="1") int songId,
-			@RequestParam(value="artistId", defaultValue="1")int artistId) {
+			@RequestParam(value="artistId", defaultValue="1")String artistId) {
 		Song s = songDao.findById(songId);
 		Artist a = artistDao.findById(artistId);
 		model.addAttribute("name", s.getName());

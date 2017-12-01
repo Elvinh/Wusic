@@ -23,7 +23,7 @@ public class SongsByArtistController {
 
 
     @RequestMapping("/songs-by-artist")
-    public String songsByArtist(Model model, @RequestParam(value = "id") int id) {
+    public String songsByArtist(Model model, @RequestParam(value = "id") String id) {
 
         List<Song> songsByArtist = songsByArtistDao.findByArtistId(id);
         Artist artist = artistDao.findById(id);
