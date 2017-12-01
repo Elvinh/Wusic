@@ -24,7 +24,7 @@ public class AlbumController {
 	private ArtistRepository artistDao;
 	
 	@RequestMapping("/get_artist_albums")
-	 public String songsByArtist(Model model, @RequestParam(value = "id") int id) {
+	 public String songsByArtist(Model model, @RequestParam(value = "id") String id) {
 
         List<Album> albumsByArtist = albumsByArtistDao.findByArtistId(id);
         Artist artist = artistDao.findById(id);
