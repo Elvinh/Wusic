@@ -5,6 +5,7 @@
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Cinzel" rel="stylesheet" type="text/css"/>
     <title>Songs in Genre</title>
     <link th:href="@{css/headerLayout.css}" rel="stylesheet" />
+    <link th:href="@{css/sidebarLayout.css}" rel="stylesheet" />
 	<style>
 		.content {
 			margin-top: 80px;
@@ -20,6 +21,8 @@
 </head>
 <body>
 	<div lang="en" th:replace="fragments/header :: header"> </div>
+	<div lang="en" th:replace="fragments/sidebar :: sidebar"> </div>
+	
 	<div class="content">
 		<h1 th:text="'Songs in Genre ' + ${genreName}"></h1>
 		<div class="songList">

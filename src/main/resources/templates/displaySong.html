@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Cinzel" rel="stylesheet" type="text/css"/>
+    <title>Album</title>
+    <link th:href="@{css/headerLayout.css}" rel="stylesheet" />
+    <link th:href="@{css/sidebarLayout.css}" rel="stylesheet" />
+	<style>
+		.content {
+			margin-top: 80px;
+		}
+	</style>
 </head>
 <body>
 	<div lang="en" th:replace="fragments/header :: header"> </div>
+	<div lang="en" th:replace="fragments/sidebar :: sidebar"> </div>
+	
+	<div class="content">
+		<h1 th:text="'Song: ' + ${name} + ' Year:' + ${year}"> </h1>
+    	<h1 th:text="'Artist:' + ${artist_name}" ></h1>
+	</div>
 
-    <h1 th:text="'Song: ' + ${name} + ' Year:' + ${year}"> </h1>
-    <h1 th:text="'Artist:' + ${artist_name}" ></h1>
 </body>
 </html>
