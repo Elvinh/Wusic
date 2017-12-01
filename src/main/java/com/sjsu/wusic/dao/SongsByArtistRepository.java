@@ -20,7 +20,7 @@ public class SongsByArtistRepository {
         List<Song> songsByArtist = new ArrayList<>();
 
         List<Map<String, Object>> maps =
-                jdbcTemplate.queryForList("SELECT song.song_id, song.title, song.year FROM song "
+                jdbcTemplate.queryForList("SELECT song.song_id, song.title, song.year, song.duration FROM song "
                 		+ "INNER JOIN artist INNER JOIN song_by_artist WHERE song_by_artist.song_id = song.song_id "
                 		+ "AND song_by_artist.artist_id = artist.artist_id AND artist.artist_id = ?", artistId);
 
@@ -30,7 +30,8 @@ public class SongsByArtistRepository {
             song.setId((String) map.get("song_id"));
             song.setTitle((String) map.get("title"));
             song.setYear((Integer) map.get("year"));
-
+            song.setDuration((Float) map.get("duration"));
+            
             songsByArtist.add(song);
 
         }

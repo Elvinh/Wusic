@@ -12,6 +12,7 @@
     <tr>
         <th>Title</th>
         <th>Year</th>
+        <th>Duration</th>
     </tr>
     </thead>
 
@@ -19,6 +20,7 @@
     <tr th:each="song : ${songs}">
         <td th:text="${song.title}"></td>
         <td th:text="${song.year}"></td>
+         <td th:text="${song.duration}"></td>
     </tr>
     </tbody>
 
