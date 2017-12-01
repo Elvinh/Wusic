@@ -5,20 +5,24 @@
     <title>Songs by Artist</title>
 </head>
 <body>
-<h1 th:text="'Songs in Genre ' + ${genre_name}"></h1>
+<h1 th:text="'Songs in Genre ' + ${genreName}"></h1>
 <table>
 
     <thead>
     <tr>
         <th>Title</th>
+        <th>Artist</th>
         <th>Year</th>
+        <th>Duration</th>
     </tr>
     </thead>
 
     <tbody>
     <tr th:each="song : ${songs}">
-        <td th:text="${song.name}"></td>
-        <td th:text="${song.year}"></td>
+        <td th:text="${song.song.title}"></td>
+        <td th:text="${song.artist}"></td>
+        <td th:text="${song.song.year}"></td>
+        <td th:text="${song.song.duration}"></td>
     </tr>
     </tbody>
 

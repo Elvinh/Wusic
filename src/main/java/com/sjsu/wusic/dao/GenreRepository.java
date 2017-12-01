@@ -16,8 +16,8 @@ public class GenreRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	public Genre findById(int id) {
-		return (Genre) jdbcTemplate.queryForObject("SELECT * FROM genre WHERE genre_id = ?", new Object[]{id}, new GenreMapper());
+	public Genre findById(String genreName) {
+		return (Genre) jdbcTemplate.queryForObject("SELECT name FROM genre WHERE name = ?", new Object[]{genreName}, new GenreMapper());
 	}
 
 	class GenreMapper implements RowMapper {
@@ -25,8 +25,8 @@ public class GenreRepository {
 		@Override
 		public Genre mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Genre genre = new Genre();
-			genre.setId(rs.getInt("genre_id"));
 			genre.setName(rs.getString("name"));
+
 			
 			return genre;
 		}
