@@ -36,8 +36,8 @@ public class UserRepository {
 		List<User> userFollowers = new ArrayList<>();
 		
         List<Map<String, Object>> maps =
-                jdbcTemplate.queryForList("SELECT fr.user_id, fr.name, fr.email FROM user_follows INNER JOIN user fg "
-                		+ "INNER JOIN user fr WHERE fg.user_id = followingID AND fr.user_id = followerID "
+                jdbcTemplate.queryForList("SELECT fr.user_id, fr.name, fr.email FROM user_follows_user INNER JOIN user fg "
+                		+ "INNER JOIN user fr WHERE fg.user_id = following_id AND fr.user_id = follower_id "
                 		+ "AND fg.user_id = ?; ", id);
 
         for (Map<String, Object> map : maps) {
@@ -63,8 +63,8 @@ public class UserRepository {
 		List<User> userFollowing = new ArrayList<>();
 		
         List<Map<String, Object>> maps =
-                jdbcTemplate.queryForList("SELECT fg.user_id, fg.name, fg.email FROM user_follows INNER JOIN user fg "
-                		+ "INNER JOIN user fr WHERE fg.user_id = followingID AND fr.user_id = followerID "
+                jdbcTemplate.queryForList("SELECT fg.user_id, fg.name, fg.email FROM user_follows_user INNER JOIN user fg "
+                		+ "INNER JOIN user fr WHERE fg.user_id = following_id AND fr.user_id = follower_id "
                 		+ "AND fr.user_id = ?; ", id);
 
         for (Map<String, Object> map : maps) {
