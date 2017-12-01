@@ -19,12 +19,10 @@ public class ArtistController {
 	private ArtistRepository artistDao;
 	
 	@RequestMapping("/get_artist")
-	public String artist(Model model, @RequestParam(value="id") String id) {
+	public String artist(Model model, @RequestParam(value="artist_id") String id) {
 		
 		Artist artist = artistDao.findById(id);
-		model.addAttribute("name", artist.getName());
-		//model.addAttribute("birthdate", artist.getBirthdate());
-		//model.addAttribute("hometown", artist.getHometown());
+		model.addAttribute("artist", artist);
 		
 		return "displayArtist";
 	
