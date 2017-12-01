@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<head th:fragment="header">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Cinzel" rel="stylesheet" type="text/css"/>
+    <link th:href="@{css/headerLayout.css}" rel="stylesheet" />
 </head>
-
-<body>
-<header th:fragment="header" class="page-head">
+<header class="page-head">
 		<h1><a href="home">WUSIC</a></h1>
 		<div class="dropdown">
 			<button class="dropbtn">Browse</button>
@@ -47,7 +44,4 @@
 				<i></i>
 			</div>
 		
-		
 </header>
-</body>
-</html>
