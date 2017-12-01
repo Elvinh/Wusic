@@ -1,21 +1,16 @@
 package com.sjsu.wusic.model;
 
 public class Album {
-	private String id;
 	private String name;
 	private int year;
+	private String artwork;
 	
-	public Album(String id, String name, int year) {
-		this.id = id;
+	public Album(String name, int year) {
 		this.name = name;
 		this.year = year;
 	}
 	public Album() {
 		
-	}
-	
-	public String getId() {
-		return id;
 	}
 	
 	public String getName() {
@@ -26,9 +21,6 @@ public class Album {
 		return year;
 	}
 	
-	public void setId(String string) {
-		this.id = string;
-	}
 	
 	public void setName(String name) {
 		this.name = name;
@@ -37,5 +29,12 @@ public class Album {
 	public void setYear(int year) {
 		this.year = year;
 	}
+	public String getArtwork() {
+		return artwork;
+	}
+	public void setArtwork(String artwork) {
+		this.artwork = artwork;
+	}
+	
 
 }
