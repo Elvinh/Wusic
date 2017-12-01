@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sjsu.wusic.dao.GenreRepository;
 import com.sjsu.wusic.dao.SongsInGenreRepository;
+import com.sjsu.wusic.dao.SongsInGenreRepository.SongAndArtist;
 import com.sjsu.wusic.model.Genre;
 import com.sjsu.wusic.model.Song;
 
@@ -22,13 +23,13 @@ public class SongsInGenreController {
 	@Autowired
 	private GenreRepository genreDao;
 	
-	@RequestMapping("/songs-in-genre")
-	public String songsInGenre(Model model, @RequestParam(value = "id") int id) { 
+	@RequestMapping("/songs_in_genre")
+	public String songsInGenre(Model model, @RequestParam(value = "genre_name") String genre_name) { 
 		
-		List<Song> songsInGenre = songsInGenreDao.findSongsInGenre(id);
+		List<SongAndArtist> songsInGenre = songsInGenreDao.findSongsInGenre(genre_name);
 		
-		Genre genre = genreDao.findById(id);
-		model.addAttribute("genre_name", genre.getName());
+		Genre genre = genreDao.findById(genre_name);
+		model.addAttribute("genreName", genre_name);
 		model.addAttribute("songs", songsInGenre);
 		
 		return "displaySongsInGenre";
