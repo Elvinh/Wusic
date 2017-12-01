@@ -20,15 +20,15 @@ public class SongsLikedByUserRepository {
         List<Song> songsLikedByUser = new ArrayList<>();
 
         List<Map<String, Object>> maps =
-                jdbcTemplate.queryForList("SELECT song.song_id, song.name, song.year FROM user_likes_song "
+                jdbcTemplate.queryForList("SELECT song.song_id, song.title, song.year FROM user_likes_song "
                 		+ "INNER JOIN user INNER JOIN song WHERE user_likes_song.user_id = user.user_id "
                 		+ "AND user_likes_song.song_id = song.song_id AND user.user_id = ?", userId);
 
         for (Map<String, Object> map : maps) {
 
             Song song = new Song();
-            song.setId((Integer) map.get("song_id"));
-            song.setName((String) map.get("name"));
+            song.setId((String) map.get("song_id"));
+            song.setTitle((String) map.get("name"));
             song.setYear((Integer) map.get("year"));
 
             songsLikedByUser.add(song);
