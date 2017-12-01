@@ -22,8 +22,8 @@ public class SongsByArtistController {
     private ArtistRepository artistDao;
 
 
-    @RequestMapping("/songs-by-artist")
-    public String songsByArtist(Model model, @RequestParam(value = "id") int id) {
+    @RequestMapping("/songs_by_artist")
+    public String songsByArtist(Model model, @RequestParam(value = "artist_id") String id) {
 
         List<Song> songsByArtist = songsByArtistDao.findByArtistId(id);
         Artist artist = artistDao.findById(id);

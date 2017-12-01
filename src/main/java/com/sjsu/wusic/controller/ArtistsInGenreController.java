@@ -8,31 +8,30 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.sjsu.wusic.dao.ArtistsInGenreRepository;
 import com.sjsu.wusic.dao.GenreRepository;
-import com.sjsu.wusic.dao.SongsInGenreRepository;
-import com.sjsu.wusic.dao.SongsInGenreRepository.SongAndArtist;
+import com.sjsu.wusic.model.Artist;
 import com.sjsu.wusic.model.Genre;
-import com.sjsu.wusic.model.Song;
 
 @Controller
-public class SongsInGenreController {
+public class ArtistsInGenreController {
 	
 	@Autowired
-	private SongsInGenreRepository songsInGenreDao;
+	private ArtistsInGenreRepository artistsInGenreDao;
 	
 	@Autowired
 	private GenreRepository genreDao;
 	
-	@RequestMapping("/songs_in_genre")
+	@RequestMapping("/artists_in_genre")
 	public String songsInGenre(Model model, @RequestParam(value = "genre_name") String genre_name) { 
 		
-		List<SongAndArtist> songsInGenre = songsInGenreDao.findSongsInGenre(genre_name);
+		List<Artist> artistsInGenre = artistsInGenreDao.findArtistsInGenre(genre_name);
 		
 		Genre genre = genreDao.findById(genre_name);
 		model.addAttribute("genreName", genre_name);
-		model.addAttribute("songs", songsInGenre);
+		model.addAttribute("artists", artistsInGenre);
 		
-		return "displaySongsInGenre";
+		return "displayArtistsInGenre";
 		
 	}
 	

@@ -16,7 +16,7 @@ public class ArtistRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	public Artist findById(int id) { 
+	public Artist findById(String id) { 
 		return (Artist) jdbcTemplate.queryForObject("SELECT * FROM artist WHERE artist_id = ?", new Object[] {id}, new ArtistMapper());
 	}
 	
@@ -25,10 +25,10 @@ public class ArtistRepository {
 		@Override 
 		public Artist mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Artist artist = new Artist();
-			artist.setId(rs.getInt("artist_id"));
+			artist.setId(rs.getString("artist_id"));
 			artist.setName(rs.getString("name"));
-			artist.setBirthdate(rs.getDate("birthdate"));
-			artist.setHometown(rs.getString("hometown"));
+			//artist.setBirthdate(rs.getDate("birthdate"));
+			//artist.setHometown(rs.getString("hometown"));
 			
 			return artist;
 		}

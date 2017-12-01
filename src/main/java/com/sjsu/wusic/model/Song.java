@@ -1,14 +1,16 @@
 package com.sjsu.wusic.model;
 
 public class Song {
-	private int id;
-	private String name;
+	private String id;
+	private String title;
 	private int year;
+	private float duration;
 	
-	public Song(int id, String name, int year) {
+	public Song(String id, String title, int year, float duration) {
 		this.id = id;
-		this.name = name;
+		this.title = title;
 		this.year = year;
+		this.duration = duration;
 	}
 	
 	public Song() {
@@ -16,29 +18,38 @@ public class Song {
 	}
 
 
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
 	
 	public int getYear() {
 		return year;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public void setYear(int year) {
 		this.year = year;
 	}
+
+	public float getDuration() {
+		return duration;
+	}
+
+	public void setDuration(float duration) {
+		this.duration = duration;
+	}
+	
 	
 	
 	

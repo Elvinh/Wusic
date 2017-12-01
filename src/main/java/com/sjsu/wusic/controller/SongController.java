@@ -20,18 +20,18 @@ public class SongController {
 	private ArtistRepository artistDao;
 	
 	@RequestMapping("/song")
-	public String song(Model model, @RequestParam(value="id", defaultValue="1") int id) {
+	public String song(Model model, @RequestParam(value="id", defaultValue="1") String id) {
 		Song s = songDao.findById(id);
-		model.addAttribute("name", s.getName());
+		model.addAttribute("name", s.getTitle());
 		return "displaySong";
 	}
 
 	@RequestMapping("/songandartist")
-	public String song(Model model, @RequestParam(value="songId", defaultValue="1") int songId,
-			@RequestParam(value="artistId", defaultValue="1")int artistId) {
+	public String song(Model model, @RequestParam(value="songId", defaultValue="1") String songId,
+			@RequestParam(value="artistId", defaultValue="1")String artistId) {
 		Song s = songDao.findById(songId);
 		Artist a = artistDao.findById(artistId);
-		model.addAttribute("name", s.getName());
+		model.addAttribute("name", s.getTitle());
 		model.addAttribute("year", s.getYear());
 		model.addAttribute("artist_name", a.getName());
 		return "displaySong";
