@@ -32,6 +32,7 @@ public class AlbumRepository {
 	        for (Map<String, Object> map : maps) {
 
 	            Album album = new Album();
+	            //album.setId((String) map.get("album_id"));
 	            album.setName((String) map.get("name"));
 	            album.setYear((Integer) map.get("year"));
 
