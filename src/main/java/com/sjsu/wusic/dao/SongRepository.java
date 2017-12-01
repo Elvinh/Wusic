@@ -17,7 +17,7 @@ public class SongRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	public Song findById(int id) {
+	public Song findById(String id) {
 		return (Song) jdbcTemplate.queryForObject("select * from song where song_id = ?", new Object[]{id}, new SongMapper());
 	}
 	
@@ -26,8 +26,8 @@ public class SongRepository {
 		@Override
 		public Song mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Song song = new Song();
-			song.setId(rs.getInt("song_id"));
-			song.setName(rs.getString("name"));
+			song.setId(rs.getString("song_id"));
+			song.setTitle(rs.getString("title"));
 			song.setYear(rs.getInt("year"));
 			return song;
 		}
