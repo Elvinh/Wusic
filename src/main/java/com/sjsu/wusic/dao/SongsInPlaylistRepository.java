@@ -21,7 +21,7 @@ public class SongsInPlaylistRepository {
 		List<Song> songsInPlaylist = new ArrayList<>();
 		
 		List<Map<String, Object>> maps =
-				jdbcTemplate.queryForList("SELECT song.song_id, song.title, song.year "
+				jdbcTemplate.queryForList("SELECT song.song_id, song.title, song.year, song.duration "
 						+ "FROM song_in_playlist sip INNER JOIN song INNER JOIN playlist "
 						+ "WHERE sip.song_id = song.song_id "
 						+ "AND sip.playlist_id = playlist.playlist_id "
@@ -33,6 +33,7 @@ public class SongsInPlaylistRepository {
             song.setId((String) map.get("song_id"));
             song.setTitle((String) map.get("title"));
             song.setYear((Integer) map.get("year"));
+            song.setDuration((Float) map.get("duration"));
 
             songsInPlaylist.add(song);
         }
