@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.sjsu.wusic.model.Artist;
 import com.sjsu.wusic.model.Song;
 
 
@@ -55,5 +56,31 @@ public class SongRepository {
 	        return songsInAlbum;
 		
 	}
-		
+	public Artist findArtistOfSong(String id) {
+		return (Artist) jdbcTemplate.queryForObject("SELECT * from artist WHERE artist_id = (SELECT artist_id from song_by_artist WHERE song_id = ?)", new Object[]{id}, new GetArtistMapper());
+	}
+	
+	class GetArtistMapper implements RowMapper {
+
+		@Override
+		public Artist mapRow(ResultSet rs, int rowNum) throws SQLException {
+			Artist artist = new Artist();
+			artist.setId(rs.getString("artist_id"));
+			artist.setName(rs.getString("name"));
+			return artist;
+		}
+	}
+	
+	public String findAlbumOfSong(String id) {
+		return (String) jdbcTemplate.queryForObject("SELECT album_name from song_in_album WHERE song_id = ?", new Object[]{id}, new GetAlbumMapper());
+	}
+	
+	class GetAlbumMapper implements RowMapper {
+
+		@Override
+		public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+			String albumName = rs.getString("album_name");
+			return albumName;
+		}
+	}
 }

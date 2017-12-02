@@ -18,7 +18,7 @@ public class ArtistController {
 	@Autowired
 	private ArtistRepository artistDao;
 	
-	@RequestMapping("/get_artist")
+	@RequestMapping("/artist")
 	public String artist(Model model, @RequestParam(value="artist_id") String id) {
 		
 		Artist artist = artistDao.findById(id);
