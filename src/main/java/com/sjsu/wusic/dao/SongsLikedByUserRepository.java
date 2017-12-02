@@ -28,7 +28,7 @@ public class SongsLikedByUserRepository {
 
             Song song = new Song();
             song.setId((String) map.get("song_id"));
-            song.setTitle((String) map.get("name"));
+            song.setTitle((String) map.get("title"));
             song.setYear((Integer) map.get("year"));
 
             songsLikedByUser.add(song);
