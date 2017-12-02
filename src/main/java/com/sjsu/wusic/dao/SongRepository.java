@@ -2,6 +2,9 @@ package com.sjsu.wusic.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -31,6 +34,26 @@ public class SongRepository {
 			song.setYear(rs.getInt("year"));
 			return song;
 		}
+	}
+	
+	public List<Song> findByAlbumName(String name) { 
+		 List<Song> songsInAlbum = new ArrayList<>();
+	        List<Map<String, Object>> maps =
+	                jdbcTemplate.queryForList("select song.title, song.year, song.duration from song_in_album sa "
+	                		+ "inner join song inner join album "
+	                		+ "where song.song_id = sa.song_id AND album.name = sa.album_name "
+	                		+ "AND album.name = ?", name);
+	        for (Map<String, Object> map : maps) {
+	        
+	            Song song = new Song();
+	            song.setId((String) map.get("id"));
+	            song.setTitle((String) map.get("title"));
+	            song.setYear((Integer) map.get("year"));
+	            song.setDuration((Float) map.get("duration"));
+	            songsInAlbum.add(song);
+	        }
+	        return songsInAlbum;
+		
 	}
 		
 }

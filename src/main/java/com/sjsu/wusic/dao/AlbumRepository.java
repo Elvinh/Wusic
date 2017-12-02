@@ -1,24 +1,40 @@
 package com.sjsu.wusic.dao;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.sjsu.wusic.model.Artist;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import com.sjsu.wusic.model.Album;
-import com.sjsu.wusic.model.Song;
 
 @Repository
 public class AlbumRepository {
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	public Album findByName(String name) {
+		return (Album) jdbcTemplate.queryForObject("select * from album where album.name = ?",new Object[] {name}, new AlbumMapper());
+	}
+	class AlbumMapper implements RowMapper {
+		
+		@Override 
+		public Album mapRow(ResultSet rs, int rowNum) throws SQLException {
+			Album album = new Album();
+			album.setName(rs.getString("name"));
+			album.setYear(rs.getInt("year"));
+			
+			return album;
+		}
+	}
 	
 	public List<Album> findByArtistId(String artistId) { 
 		 List<Album> albumsByArtist = new ArrayList<>();
