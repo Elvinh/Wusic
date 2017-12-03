@@ -44,8 +44,7 @@ public class SongsInGenreRepository {
 		return songsInGenre;
 	} 
 	
-	public class SongAndArtist
-	{
+	public class SongAndArtist {
 	    private Song song;
 	    private String artist;
 		public Song getSong() {

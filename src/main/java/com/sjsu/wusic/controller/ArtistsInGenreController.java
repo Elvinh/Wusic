@@ -23,7 +23,7 @@ public class ArtistsInGenreController {
 	private GenreRepository genreDao;
 	
 	@RequestMapping("/artists_in_genre")
-	public String songsInGenre(Model model, @RequestParam(value = "genre_name") String genre_name) { 
+	public String songsInGenre(Model model, @RequestParam(value = "name") String genre_name) {
 		
 		List<Artist> artistsInGenre = artistsInGenreDao.findArtistsInGenre(genre_name);
 		

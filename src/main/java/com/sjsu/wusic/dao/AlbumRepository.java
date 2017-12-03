@@ -22,8 +22,9 @@ public class AlbumRepository {
 	private JdbcTemplate jdbcTemplate;
 	
 	public Album findByName(String name) {
-		return (Album) jdbcTemplate.queryForObject("select * from album where album.name = ?",new Object[] {name}, new AlbumMapper());
+		return (Album) jdbcTemplate.queryForObject("select * from album where album.name = ?", new Object[] {name}, new AlbumMapper());
 	}
+
 	class AlbumMapper implements RowMapper {
 		
 		@Override 
@@ -40,15 +41,14 @@ public class AlbumRepository {
 		 List<Album> albumsByArtist = new ArrayList<>();
 
 	        List<Map<String, Object>> maps =
-	                jdbcTemplate.queryForList("SELECT al.name, al.year"
-	                		+ " FROM artist_in_album aa INNER JOIN album al "
+	                jdbcTemplate.queryForList("SELECT al.name, al.year "
+	                		+ "FROM artist_in_album aa INNER JOIN album al "
 	                		+ "INNER JOIN artist ar "
 	                		+ "WHERE ar.artist_id = aa.artist_id AND al.name = aa.album_name AND ar.artist_id = ?", artistId);
 
 	        for (Map<String, Object> map : maps) {
 
 	            Album album = new Album();
-	            //album.setId((String) map.get("album_id"));
 	            album.setName((String) map.get("name"));
 	            album.setYear((Integer) map.get("year"));
 

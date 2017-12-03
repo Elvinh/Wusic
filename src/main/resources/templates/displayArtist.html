@@ -7,17 +7,54 @@
 		.content {
 			margin-top: 80px;
 		}
-		.gad {
-			color: blue;
-		}
 	</style>
 </head>
-<body>
-<div lang="en" th:replace="fragments/header :: header"> </div>
-<div lang="en" th:replace="fragments/sidebar :: sidebar"> </div>
-<div class="content">
-	<h1 class="gad" th:text="'Artist: ' + ${artist.name}"> </h1>
-</div>
 
+<body>
+	<div lang="en" th:replace="fragments/header :: header"> </div>
+	<div lang="en" th:replace="fragments/sidebar :: sidebar"> </div>
+	<div class="content">
+		<h1 class="gad" th:text="'Artist: ' + ${artist.name}"> </h1>
+
+		<hr></hr>
+
+		<h1 th:text="${artist.name} + '\'s Albums'"> </h1>
+		<table>
+			<thead>
+			<tr>
+				<th>Name</th>
+				<th>Year</th>
+			</tr>
+			</thead>
+
+			<tbody>
+			<tr th:each="index : ${#numbers.sequence(0, #arrays.length(albums) - 1)}">
+				<td><a th:text="${albums[index].name}" th:href="@{'/get_album_songs?name=' + ${albums[index].name}}">a</a></td>
+				<td th:text="${albums[index].year}"></td>
+			</tr>
+			</tbody>
+
+		</table>
+
+		<hr></hr>
+
+
+		<h1>Genres</h1>
+		<table>
+			<thead>
+			<tr>
+				<th>Name</th>
+			</tr>
+			</thead>
+
+			<tbody>
+			<tr th:each="index : ${#numbers.sequence(0, #arrays.length(genres) - 1)}">
+				<td><a th:text="${genres[index].name}" th:href="@{'/artists_in_genre?name=' + ${genres[index].name}}">a</a></td>
+			</tr>
+			</tbody>
+
+		</table>
+	</div>
+	
 </body>
 </html>

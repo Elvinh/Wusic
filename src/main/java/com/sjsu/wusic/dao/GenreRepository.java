@@ -2,6 +2,9 @@ package com.sjsu.wusic.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,6 +22,27 @@ public class GenreRepository {
 	public Genre findById(String genreName) {
 		return (Genre) jdbcTemplate.queryForObject("SELECT name FROM genre WHERE name = ?", new Object[]{genreName}, new GenreMapper());
 	}
+	
+	public List<Genre> genresByArtist(String artistId) {
+		
+		List<Genre> genresByArtist = new ArrayList<>();
+		
+		List<Map<String, Object>> maps = jdbcTemplate.queryForList("SELECT genre.name "
+				+ "FROM artist_genre_tag aig INNER JOIN artist INNER JOIN genre "
+				+ "WHERE aig.artist_id = artist.artist_id "
+				+ "AND aig.genre_name = genre.name "
+				+ "AND artist.artist_id = ?", artistId);
+		
+		for(Map<String, Object> map : maps) {
+			Genre genre = new Genre();
+			genre.setName((String) map.get("name"));
+			
+			genresByArtist.add(genre);
+		}
+		
+		return genresByArtist;
+	}
+	
 
 	class GenreMapper implements RowMapper {
 		

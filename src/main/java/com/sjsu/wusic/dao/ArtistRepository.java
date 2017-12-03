@@ -27,8 +27,6 @@ public class ArtistRepository {
 			Artist artist = new Artist();
 			artist.setId(rs.getString("artist_id"));
 			artist.setName(rs.getString("name"));
-			//artist.setBirthdate(rs.getDate("birthdate"));
-			//artist.setHometown(rs.getString("hometown"));
 			
 			return artist;
 		}
