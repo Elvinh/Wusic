@@ -55,8 +55,8 @@
 
         <tbody>
         <tr th:each="follower : ${followers}">
-            <td><a th:text="${follower.name}" th:href="@{'/user?id=' + ${follower.id}}">a</a></td>
-            <td th:text="${follower.email}"></td>
+            <td><a th:text="${follower.name}" th:href="@{'/user?username=' + ${follower.username}}">a</a></td>
+            <td th:text="${follower.username}"></td>
         </tr>
         </tbody>
 
@@ -74,8 +74,8 @@
 
         <tbody>
         <tr th:each="following : ${followings}">
-            <td><a th:text="${following.name}" th:href="@{'/user?id=' + ${following.id}}">a</a></td>
-            <td th:text="${following.email}"></td>
+            <td><a th:text="${following.name}" th:href="@{'/user?username=' + ${following.username}}">a</a></td>
+            <td th:text="${following.username}"></td>
         </tr>
         </tbody>
 

@@ -21,8 +21,8 @@ public class UserRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	public User findById(int id) {
-		return (User) jdbcTemplate.queryForObject("SELECT * FROM user WHERE user_id = ?", new Object[] {id}, new UserMapper());
+	public User findByUsername(String username) {
+		return (User) jdbcTemplate.queryForObject("SELECT * FROM users WHERE username = ?", new Object[] {username}, new UserMapper());
 	}
 	
 	/**
@@ -31,20 +31,19 @@ public class UserRepository {
 	 * @param id
 	 * @return a List of Users following a given User  
 	 */
-	public List<User> getUserFollowers(int id) {
+	public List<User> getUserFollowers(String username) {
 		
 		List<User> userFollowers = new ArrayList<>();
 		
         List<Map<String, Object>> maps =
-                jdbcTemplate.queryForList("SELECT fr.user_id, fr.name, fr.email FROM user_follows_user INNER JOIN user fg "
-                		+ "INNER JOIN user fr WHERE fg.user_id = following_id AND fr.user_id = follower_id "
-                		+ "AND fg.user_id = ?; ", id);
+                jdbcTemplate.queryForList("SELECT fr.name, fr.username FROM user_follows_user INNER JOIN users fg "
+                		+ "INNER JOIN users fr WHERE fg.username = following_id AND fr.username = follower_id "
+                		+ "AND fg.username = ?; ", username);
 
         for (Map<String, Object> map : maps) {
         		User user = new User();
-        		user.setId((Integer) map.get(("user_id")));
         		user.setName((String) map.get(("name")));
-        		user.setEmail((String) map.get(("email")));
+        		user.setUsername((String) map.get(("username")));
         		
         		userFollowers.add(user);
         }
@@ -58,20 +57,19 @@ public class UserRepository {
 	 * @param id
 	 * @return a List of Users following a user with a given id 
 	 */
-	public List<User> getUserFollowing(int id) {
+	public List<User> getUserFollowing(String username) {
 		
 		List<User> userFollowing = new ArrayList<>();
 		
         List<Map<String, Object>> maps =
-                jdbcTemplate.queryForList("SELECT fg.user_id, fg.name, fg.email FROM user_follows_user INNER JOIN user fg "
-                		+ "INNER JOIN user fr WHERE fg.user_id = following_id AND fr.user_id = follower_id "
-                		+ "AND fr.user_id = ?; ", id);
+                jdbcTemplate.queryForList("SELECT fg.name, fg.username FROM user_follows_user INNER JOIN users fg "
+                		+ "INNER JOIN users fr WHERE fg.username = following_id AND fr.username = follower_id "
+                		+ "AND fr.username = ?; ", username);
 
         for (Map<String, Object> map : maps) {
         		User user = new User();
-        		user.setId((Integer) map.get(("user_id")));
         		user.setName((String) map.get(("name")));
-        		user.setEmail((String) map.get(("email")));
+        		user.setUsername((String) map.get(("username")));
         		
         		userFollowing.add(user);
         }
@@ -84,9 +82,8 @@ public class UserRepository {
 		@Override 
 		public User mapRow(ResultSet rs, int rowNum) throws SQLException {
 			User user = new User();
-			user.setId(rs.getInt("user_id"));
 			user.setName(rs.getString("name"));
-			user.setEmail(rs.getString("email"));
+			user.setUsername(rs.getString("username"));
 			
 			return user;
 		}

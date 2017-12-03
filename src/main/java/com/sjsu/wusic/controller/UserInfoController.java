@@ -28,15 +28,15 @@ public class UserInfoController {
 	SongsLikedByUserRepository likedSongsDao;
 	
 	@RequestMapping("/user")
-	public String song(Model model, @RequestParam(value="id", defaultValue="1") int id) {
-		User user = userDao.findById(id);
-		List<Playlist> playlistsByUser = playlistByUserDao.playlistsByUser(id);
-		List<User> userFollowing = userDao.getUserFollowing(id);
-		List<User> userFollowers = userDao.getUserFollowers(id);
-		List<Song> likedSongs = likedSongsDao.findByUserId(id);
+	public String song(Model model, @RequestParam(value="username", defaultValue="adam@wusic.com") String username) {
+		User user = userDao.findByUsername(username);
+		List<Playlist> playlistsByUser = playlistByUserDao.playlistsByUser(username);
+		List<User> userFollowing = userDao.getUserFollowing(username);
+		List<User> userFollowers = userDao.getUserFollowers(username);
+		List<Song> likedSongs = likedSongsDao.findByUserId(username);
 
 		model.addAttribute("user_name", user.getName());
-		model.addAttribute("user_email", user.getEmail());
+		model.addAttribute("user_email", user.getUsername());
 		model.addAttribute("playlists", playlistsByUser);		
 		model.addAttribute("followers", userFollowers);
 		model.addAttribute("followings", userFollowing);

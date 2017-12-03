@@ -16,15 +16,15 @@ public class PlaylistsByUserRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	public List<Playlist> playlistsByUser(int userId) {
+	public List<Playlist> playlistsByUser(String username) {
 		
 		List<Playlist> playlistsByUser = new ArrayList<>();
 		
         List<Map<String, Object>> maps =
                 jdbcTemplate.queryForList("SELECT playlist.playlist_id, playlist.name, playlist.song_count "
-                		+ "FROM user_owns_playlist INNER JOIN playlist INNER JOIN user "
+                		+ "FROM user_owns_playlist INNER JOIN playlist INNER JOIN users "
                 		+ "WHERE user_owns_playlist.playlist_id = playlist.playlist_id "
-                		+ "AND user_owns_playlist.user_id = user.user_id AND user.user_id= ?", userId);
+                		+ "AND user_owns_playlist.username = users.username AND users.username= ?", username);
 
         for (Map<String, Object> map : maps) {
 

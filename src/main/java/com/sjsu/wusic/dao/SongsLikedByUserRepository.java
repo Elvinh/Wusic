@@ -15,14 +15,14 @@ public class SongsLikedByUserRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public List<Song> findByUserId(int userId) {
+    public List<Song> findByUserId(String username) {
 
         List<Song> songsLikedByUser = new ArrayList<>();
 
         List<Map<String, Object>> maps =
                 jdbcTemplate.queryForList("SELECT song.song_id, song.title, song.year FROM user_likes_song "
-                		+ "INNER JOIN user INNER JOIN song WHERE user_likes_song.user_id = user.user_id "
-                		+ "AND user_likes_song.song_id = song.song_id AND user.user_id = ?", userId);
+                		+ "INNER JOIN users INNER JOIN song WHERE user_likes_song.username = users.username "
+                		+ "AND user_likes_song.song_id = song.song_id AND users.username = ?", username);
 
         for (Map<String, Object> map : maps) {
 
