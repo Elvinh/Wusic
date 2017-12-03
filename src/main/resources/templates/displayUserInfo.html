@@ -37,7 +37,7 @@
 
         <tbody>
         <tr th:each="playlist : ${playlists}">
-            <td th:text="${playlist.name}"></td>
+            <td><a th:text="${playlist.name}" th:href="@{'/playlist?id=' + ${playlist.id}}">a</a></td>
             <td th:text="${playlist.songCount}"></td>
         </tr>
         </tbody>
@@ -55,7 +55,7 @@
 
         <tbody>
         <tr th:each="follower : ${followers}">
-            <td th:text="${follower.name}"></td>
+            <td><a th:text="${follower.name}" th:href="@{'/user?id=' + ${follower.id}}">a</a></td>
             <td th:text="${follower.email}"></td>
         </tr>
         </tbody>
@@ -74,7 +74,7 @@
 
         <tbody>
         <tr th:each="following : ${followings}">
-            <td th:text="${following.name}"></td>
+            <td><a th:text="${following.name}" th:href="@{'/user?id=' + ${following.id}}">a</a></td>
             <td th:text="${following.email}"></td>
         </tr>
         </tbody>
