@@ -2,86 +2,104 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Songs by Artist</title>
+    <title>Wusic | User Info</title>
+    <style>
+		.content {
+			margin-top: 80px;
+		}
+		.content .artistList {
+			height: 450px;
+			width: 70%;
+			background-color: powderblue;
+			overflow-y: scroll;
+			padding: 15px;
+		}
+
+
+    </style>
 </head>
 <body>
-<h1 th:text="'User page for ' + ${user_name}"></h1>
-<h3 th:text="${user_email}"></h3>
+<div lang="en" th:replace="fragments/header :: header"></div>
+<div lang="en" th:replace="fragments/sidebar :: sidebar"></div>
+<div class="content">
+    <h1 th:text="'User page for ' + ${user_name}"></h1>
+    <h3 th:text="${user_email}"></h3>
 
-<hr></hr>
-<h2>Playlists</h2>
-<table>
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Song count</th>
-    </tr>
-    </thead>
+    <hr></hr>
+    <h2>Playlists</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Song count</th>
+        </tr>
+        </thead>
 
-    <tbody>
-    <tr th:each="playlist : ${playlists}">
-        <td th:text="${playlist.name}"></td>
-        <td th:text="${playlist.songCount}"></td>
-    </tr>
-    </tbody>
-</table>
+        <tbody>
+        <tr th:each="playlist : ${playlists}">
+            <td th:text="${playlist.name}"></td>
+            <td th:text="${playlist.songCount}"></td>
+        </tr>
+        </tbody>
+    </table>
 
-<hr></hr>
-<h2 th:text="${user_name} + '\'s Followers'"></h2>
-<table>
-	<thead>
-	<tr>
-		<th>Username</th>
-		<th>Email</th>
-	</tr>
-	</thead>
+    <hr></hr>
+    <h2 th:text="${user_name} + '\'s Followers'"></h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+        </tr>
+        </thead>
 
-    <tbody>
-    <tr th:each="follower : ${followers}">
-        <td th:text="${follower.name}"></td>
-        <td th:text="${follower.email}"></td>
-    </tr>
-    </tbody>
-	
-</table>
+        <tbody>
+        <tr th:each="follower : ${followers}">
+            <td th:text="${follower.name}"></td>
+            <td th:text="${follower.email}"></td>
+        </tr>
+        </tbody>
 
-<hr></hr>
-<h2 th:text="${user_name} + ' is Following'"></h2>
-<table>
-	<thead>
-	<tr>
-		<th>Username</th>
-		<th>Email</th>
-	</tr>
-	</thead>
+    </table>
 
-    <tbody>
-    <tr th:each="following : ${followings}">
-        <td th:text="${following.name}"></td>
-        <td th:text="${following.email}"></td>
-    </tr>
-    </tbody>
-	
-</table>
+    <hr></hr>
+    <h2 th:text="${user_name} + ' is Following'"></h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+        </tr>
+        </thead>
 
-<hr></hr>
-<h2 th:text="${user_name} + '\'s Liked Songs'"></h2>
-<table>
-	<thead>
-	<tr>
-		<th>Title</th>
-		<th>Year</th>
-	</tr>
-	</thead>
+        <tbody>
+        <tr th:each="following : ${followings}">
+            <td th:text="${following.name}"></td>
+            <td th:text="${following.email}"></td>
+        </tr>
+        </tbody>
 
-    <tbody>
-    <tr th:each="liked_song : ${liked_songs}">
-        <td th:text="${liked_song.title}"></td>
-        <td th:text="${liked_song.year}"></td>
-    </tr>
-    </tbody>
-	
-</table>
+    </table>
 
+    <hr></hr>
+    <h2 th:text="${user_name} + '\'s Liked Songs'"></h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Year</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="liked_song : ${liked_songs}">
+            <td th:text="${liked_song.title}"></td>
+            <td th:text="${liked_song.year}"></td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
 </body>
 </html>

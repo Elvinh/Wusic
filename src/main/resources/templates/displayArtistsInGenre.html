@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Songs by Artist</title>
-	<style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Wusic | Artist Info</title>
+    <style>
 		.content {
 			margin-top: 80px;
 		}
@@ -14,28 +14,29 @@
 			overflow-y: scroll;
 			padding: 15px;
 		}
-	</style>
+\
+    </style>
 </head>
 <body>
-	<div lang="en" th:replace="fragments/header :: header"> </div>
-	<div lang="en" th:replace="fragments/sidebar :: sidebar"> </div>
-	<div class="content">
-		<h1 th:text="'Artists in ' + ${genreName} + ' genre'"></h1>
-		<div class="artistList">
-			<table>
-			    <thead>
-			    <tr>
-			        <th>Name</th>
-			    </tr>
-			    </thead>
-			
-			    <tbody>
-			    <tr th:each="artist : ${artists}">
-			        <td th:text="${artist.name}"></td>
-			    </tr>
-			    </tbody>
-			</table>
-		</div>
-	</div>
+<div lang="en" th:replace="fragments/header :: header"></div>
+<div lang="en" th:replace="fragments/sidebar :: sidebar"></div>
+<div class="content">
+    <h1 th:text="'Artists in ' + ${genreName} + ' genre'"></h1>
+    <div class="artistList">
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="artist : ${artists}">
+                <td th:text="${artist.name}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </body>
 </html>
