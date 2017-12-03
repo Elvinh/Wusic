@@ -19,7 +19,16 @@ public class PlaylistRepository {
 	public Playlist findById(int id) {
 		return (Playlist) jdbcTemplate.queryForObject("SELECT * FROM playlist WHERE playlist_id = ?", new Object[] {id}, new PlaylistMapper());
 	}
-	
+
+	public void addSongToPlaylist(String songId, int playlistId){
+
+		jdbcTemplate.update("INSERT INTO song_in_playlist VALUES (?, ?);", songId, playlistId);
+
+		// increment song count
+		int updatedSongCount = findById(playlistId).getSongCount() + 1;
+		jdbcTemplate.update("UPDATE playlist SET song_count = ? WHERE playlist_id = ?", updatedSongCount, playlistId);
+	}
+
 	class PlaylistMapper implements RowMapper {
 		
 		@Override

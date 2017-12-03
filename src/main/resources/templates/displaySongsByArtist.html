@@ -1,38 +1,53 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Wusic | Songs by Artist</title>
-	<style>
+    <style>
 		.content {
 			margin-top: 80px;
-		}
-	</style>
+	    }
+    </style>
 </head>
 <body>
-	<div lang="en" th:replace="fragments/header :: header"> </div>
-	<div lang="en" th:replace="fragments/sidebar :: sidebar"> </div>
-	
-	<div class="content">
-		<h1 th:text="'Songs by ' + ${artist_name}"></h1>
-		<table>
-		
-		    <thead>
-		    <tr>
-		        <th>Title</th>
-		        <th>Year</th>
-		        <th>Duration</th>
-		    </tr>
-		    </thead>
-		
-		    <tbody>
-		    <tr th:each="song : ${songs}">
-		        <td th:text="${song.title}"></td>
-		        <td th:text="${song.year}"></td>
-		         <td th:text="${song.duration}"></td>
-		    </tr>
-		    </tbody>
-		</table>
-	</div>
+<div lang="en" th:replace="fragments/header :: header"></div>
+<div lang="en" th:replace="fragments/sidebar :: sidebar"></div>
+
+<div class="content">
+    <h1 th:text="'Songs by ' + ${artist_name}"></h1>
+
+    <table>
+
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Duration</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="song : ${songs}">
+            <td th:text="${song.title}"></td>
+            <td th:text="${song.year}"></td>
+            <td th:text="${song.duration}"></td>
+            <td>
+                <form action="add_song_to_playlist" method="get">
+                    <input type="hidden" name="song_id" th:value="${song.id}"/>
+                    <select name="playlist_id">
+                        <option label="Add to Playlist..."></option>
+                        <div th:each="playlist : ${playlist_options}">
+                            <option th:value="${playlist.id}" th:text="${playlist.name}"></option>
+                        </div>
+                        <option label="+ Create New Playlist"></option>
+                        <option name="playlist_id" value="3" label="Sample"></option>
+                    </select>
+                    <Button type="submit">Add</Button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

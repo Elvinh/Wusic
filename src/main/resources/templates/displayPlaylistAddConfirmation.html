@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Wusic | Added to Playlist</title>
+    <style>
+		.content {
+			margin-top: 80px;
+		}
+
+    </style>
+</head>
+<body>
+<div lang="en" th:replace="fragments/header :: header"></div>
+<div lang="en" th:replace="fragments/sidebar :: sidebar"></div>
+<div class="content">
+    <h3 th:text="${song_name} + ' added to ' + ${playlist_name}"></h3>
+
+    <button onclick="goBack()">Go Back</button>
+
+    <script>
+			function goBack() {
+    			window.history.back();
+            }
+    </script>
+
+</div>
+</body>
+</html>

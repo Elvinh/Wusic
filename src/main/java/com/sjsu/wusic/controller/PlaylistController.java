@@ -47,8 +47,19 @@ public class PlaylistController {
 		model.addAttribute("songs", songsInPlaylist);
 		model.addAttribute("artists", artistInPlaylist);
 		model.addAttribute("albums", albumsInPlaylist);
-		
-		return "displaySongsInPlaylist"; 
+
+		return "displaySongsInPlaylist";
 	}
-	
+
+	@RequestMapping("/add_song_to_playlist")
+	public String addSong(Model model, @RequestParam(value = "song_id") String songId, @RequestParam(value = "playlist_id") int playlistId) {
+
+		playlistDao.addSongToPlaylist(songId, playlistId);
+
+		model.addAttribute("song_name", songDao.findById(songId).getTitle());
+		model.addAttribute("playlist_name", playlistDao.findById(playlistId).getName());
+
+		return "displayPlaylistAddConfirmation";
+	}
+
 }
