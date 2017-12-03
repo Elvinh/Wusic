@@ -24,18 +24,19 @@
 				<a href = "advSearch">Advanced Search</a>
 			</div>
 			
-			<!--<c:set var="id" scope="session" value="${user}"/>
-			<c:if test="${empty id}"> 
-			-->
-			<div class="login">
-				<a href="login">LOGIN</a>
+			<div sec:authorize="isAnonymous()">
+				<div class="login">
+					<a href="login">LOGIN</a>
+				</div>
 			</div>
-			
-			<!--   <c:set var="id" scope="session" value="${user}"/>
-			<c:if test="${not empty id}">
-				<div class="logout">
-						<a href="logout">LOGOUT</a>	
-				</div>-->
+
+
+			<div sec:authorize="isAuthenticated()">
+        		<form class="login" th:action="@{/logout}" method="post">
+            		<input type="submit" value="Sign Out"/>
+        		</form>
+			</div>
+
 			
 			<div class = "myCart">
 				<a href = "google.com">
