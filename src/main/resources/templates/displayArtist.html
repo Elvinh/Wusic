@@ -1,60 +1,63 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head >
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Artist</title>
-	<style>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Wusic | Artist Info</title>
+    <style>
 		.content {
 			margin-top: 80px;
 		}
-	</style>
+
+    </style>
 </head>
 
 <body>
-	<div lang="en" th:replace="fragments/header :: header"> </div>
-	<div lang="en" th:replace="fragments/sidebar :: sidebar"> </div>
-	<div class="content">
-		<h1 class="gad" th:text="'Artist: ' + ${artist.name}"> </h1>
+<div lang="en" th:replace="fragments/header :: header"></div>
+<div lang="en" th:replace="fragments/sidebar :: sidebar"></div>
+<div class="content">
+    <h1 class="gad" th:text="'Artist: ' + ${artist.name}"></h1>
 
-		<hr></hr>
+    <hr></hr>
 
-		<h1 th:text="${artist.name} + '\'s Albums'"> </h1>
-		<table>
-			<thead>
-			<tr>
-				<th>Name</th>
-				<th>Year</th>
-			</tr>
-			</thead>
+    <h1 th:text="${artist.name} + '\'s Albums'"></h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Year</th>
+        </tr>
+        </thead>
 
-			<tbody>
-			<tr th:each="index : ${#numbers.sequence(0, #arrays.length(albums) - 1)}">
-				<td><a th:text="${albums[index].name}" th:href="@{'/get_album_songs?name=' + ${albums[index].name}}">a</a></td>
-				<td th:text="${albums[index].year}"></td>
-			</tr>
-			</tbody>
+        <tbody>
+        <tr th:each="index : ${#numbers.sequence(0, #arrays.length(albums) - 1)}">
+            <td><a th:text="${albums[index].name}" th:href="@{'/get_album_songs?name=' + ${albums[index].name}}">a</a>
+            </td>
+            <td th:text="${albums[index].year}"></td>
+        </tr>
+        </tbody>
 
-		</table>
+    </table>
 
-		<hr></hr>
+    <hr></hr>
 
 
-		<h1>Genres</h1>
-		<table>
-			<thead>
-			<tr>
-				<th>Name</th>
-			</tr>
-			</thead>
+    <h1>Genres</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+        </thead>
 
-			<tbody>
-			<tr th:each="index : ${#numbers.sequence(0, #arrays.length(genres) - 1)}">
-				<td><a th:text="${genres[index].name}" th:href="@{'/artists_in_genre?name=' + ${genres[index].name}}">a</a></td>
-			</tr>
-			</tbody>
+        <tbody>
+        <tr th:each="index : ${#numbers.sequence(0, #arrays.length(genres) - 1)}">
+            <td><a th:text="${genres[index].name}" th:href="@{'/artists_in_genre?name=' + ${genres[index].name}}">a</a>
+            </td>
+        </tr>
+        </tbody>
 
-		</table>
-	</div>
-	
+    </table>
+</div>
+
 </body>
 </html>

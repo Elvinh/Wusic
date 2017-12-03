@@ -1,41 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Songs by Artist</title>
-	<style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Wusic | Songs by Artist</title>
+    <style>
 		.content {
 			margin-top: 80px;
 		}
-	</style>
+
+    </style>
 </head>
 <body>
-	<div lang="en" th:replace="fragments/header :: header"> </div>
-	<div lang="en" th:replace="fragments/sidebar :: sidebar"> </div>
-	
-	<div class="content">
-		<h1 th:text="'Playlist ' + ${playlist_name}"></h1>
-		<table>
-		    <thead>
-		    <tr>
-		        <th>Title</th>
-		        <th>Artist</th>
-		        <th>Album</th>
-		        <th>Year</th>
-		        <th>Duration</th>
-		    </tr>
-		    </thead>
-		
-		    <tbody>
-		    <tr th:each="index : ${#numbers.sequence( 0, #arrays.length(songs)-1)}"> 
-		        <td th:text="${songs[index].title}">dsf</td>
-		        <td><a th:text="${artists[index].name}" th:href="@{'/artist?artist_id=' + ${artists[index].id}}">a</a></td>
-		       	<td><a th:text="${albums[index]}" th:href="@{'/get_album_songs?name=' + ${albums[index]}}">a</a></td>
-		        <td th:text="${songs[index].year}"></td>
-		        <td th:text="${songs[index].duration}"></td>
-		    </tr>
-		    </tbody>
-		</table>
-	</div>
+<div lang="en" th:replace="fragments/header :: header"></div>
+<div lang="en" th:replace="fragments/sidebar :: sidebar"></div>
+
+<div class="content">
+    <h1 th:text="'Playlist ' + ${playlist_name}"></h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Album</th>
+            <th>Year</th>
+            <th>Duration</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="index : ${#numbers.sequence( 0, #arrays.length(songs)-1)}">
+            <td th:text="${songs[index].title}">dsf</td>
+            <td><a th:text="${artists[index].name}" th:href="@{'/artist?artist_id=' + ${artists[index].id}}">a</a></td>
+            <td><a th:text="${albums[index]}" th:href="@{'/get_album_songs?name=' + ${albums[index]}}">a</a></td>
+            <td th:text="${songs[index].year}"></td>
+            <td th:text="${songs[index].duration}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
