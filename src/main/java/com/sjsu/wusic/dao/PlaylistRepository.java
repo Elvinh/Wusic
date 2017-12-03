@@ -29,6 +29,15 @@ public class PlaylistRepository {
 		jdbcTemplate.update("UPDATE playlist SET song_count = ? WHERE playlist_id = ?", updatedSongCount, playlistId);
 	}
 
+	public void removeSongFromPlaylist(String songId, int playlistId){
+
+		jdbcTemplate.update("DELETE FROM song_in_playlist WHERE song_id = ? AND playlist_id = ?", songId, playlistId);
+
+		int updatedSongCount = jdbcTemplate.queryForObject("SELECT COUNT(*) from song_in_playlist WHERE playlist_id = ?", new Object[] {playlistId}, Integer.class);
+
+		jdbcTemplate.update("UPDATE playlist SET song_count = ? WHERE playlist_id = ?", updatedSongCount, playlistId);
+	}
+
 	class PlaylistMapper implements RowMapper {
 		
 		@Override

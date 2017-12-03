@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Wusic | Songs by Artist</title>
+    <title>Wusic | Songs in Playlist</title>
     <style>
 		.content {
 			margin-top: 80px;
@@ -34,6 +34,14 @@
             <td><a th:text="${albums[index]}" th:href="@{'/get_album_songs?name=' + ${albums[index]}}">a</a></td>
             <td th:text="${songs[index].year}"></td>
             <td th:text="${songs[index].duration}"></td>
+            <td>
+                <form action="remove_song_from_playlist" method="get">
+                    <input type="hidden" name="song_id" th:value="${songs[index].id}"/>
+                    <input type="hidden" name="playlist_id" th:value="${playlist_id}"/>
+                    <Button type="submit">Remove</Button>
+                </form>
+            </td>
+
         </tr>
         </tbody>
     </table>

@@ -14,7 +14,7 @@
 <div lang="en" th:replace="fragments/header :: header"></div>
 <div lang="en" th:replace="fragments/sidebar :: sidebar"></div>
 <div class="content">
-    <h3 th:text="${song_name} + ' added to ' + ${playlist_name}"></h3>
+    <h3 th:text="${message}"></h3>
 
     <button onclick="goBack()">Go Back</button>
 

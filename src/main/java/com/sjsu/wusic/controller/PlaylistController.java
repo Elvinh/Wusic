@@ -44,6 +44,7 @@ public class PlaylistController {
 		}
 		
 		model.addAttribute("playlist_name", playlistName);
+		model.addAttribute("playlist_id", id);
 		model.addAttribute("songs", songsInPlaylist);
 		model.addAttribute("artists", artistInPlaylist);
 		model.addAttribute("albums", albumsInPlaylist);
@@ -56,10 +57,21 @@ public class PlaylistController {
 
 		playlistDao.addSongToPlaylist(songId, playlistId);
 
-		model.addAttribute("song_name", songDao.findById(songId).getTitle());
-		model.addAttribute("playlist_name", playlistDao.findById(playlistId).getName());
+		String message = songDao.findById(songId).getTitle() + " added to " + playlistDao.findById(playlistId).getName();
+		model.addAttribute("message", message);
 
-		return "displayPlaylistAddConfirmation";
+		return "displayConfirmation";
+	}
+
+	@RequestMapping("/remove_song_from_playlist")
+	public String removeSong(Model model, @RequestParam(value = "song_id") String songId, @RequestParam(value = "playlist_id") int playlistId) {
+
+		playlistDao.removeSongFromPlaylist(songId, playlistId);
+
+		String message = songDao.findById(songId).getTitle() + " removed from " + playlistDao.findById(playlistId).getName();
+		model.addAttribute("message", message);
+
+		return "displayConfirmation";
 	}
 
 }
