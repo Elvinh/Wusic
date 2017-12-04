@@ -1,38 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Wusic | Songs by Artist</title>
-	<style>
-		.content {
-			margin-top: 80px;
-		}
-	</style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Wusic | Discover Songs</title>
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet" type="text/css"/>
+    <link th:href="@{css/pageLayout.css}" rel="stylesheet"/>
 </head>
 <body>
-	<div lang="en" th:replace="fragments/header :: header"> </div>
-	<div lang="en" th:replace="fragments/sidebar :: sidebar"> </div>
-	
-	<div class="content">
-		<h1 th:text="'Songs by ' + ${artist_name}"></h1>
-		<table>
-		
-		    <thead>
-		    <tr>
-		        <th>Title</th>
-		        <th>Year</th>
-		        <th>Duration</th>
-		    </tr>
-		    </thead>
-		
-		    <tbody>
-		    <tr th:each="song : ${songs}">
-		        <td th:text="${song.title}"></td>
-		        <td th:text="${song.year}"></td>
-		         <td th:text="${song.duration}"></td>
-		    </tr>
-		    </tbody>
-		</table>
-	</div>
+<div lang="en" th:replace="fragments/header :: header"></div>
+<div lang="en" th:replace="fragments/sidebar :: sidebar"></div>
+
+<div class="content">
+    <h1>Discover Songs</h1>
+    <table>
+
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Duration</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="song : ${songs}">
+            <td th:text="${song.title}"></td>
+            <td th:text="${song.year}"></td>
+            <td th:text="${song.duration}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
