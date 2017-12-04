@@ -39,11 +39,17 @@
 				</div>
 			</div>
 
-
 			<div sec:authorize="isAuthenticated()">
+				<div class="logout">
+					<a href="logout">Logout</a>
+				</div>
+			</div>
+
+
+			<!-- <div sec:authorize="isAuthenticated()">
         		<div class="logout" th:action="@{/logout}" method="post">
             		<input type="submit" value="Logout"/>
         		</div>
-			</div>
+			</div> -->
 		
 </header>
