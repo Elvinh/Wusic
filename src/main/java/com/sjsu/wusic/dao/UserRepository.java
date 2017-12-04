@@ -28,7 +28,7 @@ public class UserRepository {
 	/**
 	 * Who is following a given User 
 	 * 
-	 * @param id
+	 * @param username
 	 * @return a List of Users following a given User  
 	 */
 	public List<User> getUserFollowers(String username) {
@@ -54,7 +54,7 @@ public class UserRepository {
 	/**
 	 * Who is a given User following 
 	 * 
-	 * @param id
+	 * @param username
 	 * @return a List of Users following a user with a given id 
 	 */
 	public List<User> getUserFollowing(String username) {

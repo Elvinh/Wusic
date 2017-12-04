@@ -39,8 +39,10 @@ public class GenreRepository {
 			
 			genresByArtist.add(genre);
 		}
-		if(genresByArtist.isEmpty())
+
+		if(genresByArtist.isEmpty()) {
 			genresByArtist.add(new Genre());
+		}
 		return genresByArtist;
 	}
 	
@@ -64,13 +66,11 @@ public List<Genre> listGenres() {
 		List<Map<String, Object>> maps = jdbcTemplate.queryForList("select * from genre");
 		
 		for(Map<String, Object> map : maps) {
-			System.out.println("repo");
 			Genre genre = new Genre();
 			genre.setName((String) map.get("name"));
 			genreList.add(genre);
 		}
-//		if(genreList.isEmpty())
-//			genreList.add(new Genre());
+
 		return genreList;
 	}
 	
