@@ -1,55 +1,40 @@
 <head th:fragment="header">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat+Alternates:300" rel="stylesheet" type="text/css"/>
-
+	<link href="https://fonts.googleapis.com/css?family=Montserrat+Alternates:300" rel="stylesheet" type="text/css"/>
     <link th:href="@{css/headerLayout.css}" rel="stylesheet" />
 </head>
 <header class="page-head">
 		<h1><a href="home">WUSIC</a></h1>
 		<div class="dropdown">
-			<button class="dropbtn">Discover</button>
+			<button class="dropbtn">Browse</button>
 			<div class="dropdown-content">
-				<form method="get" action="#" th:action = "@{/discover_songs}" >
-		    		<button class="link" name="browseBy" value="song">By Song</button>
-				</form>
-				<form method="get" action="#" th:action = "@{/discover_artists}" >
-		    		<button class="link" name="browseBy" value="artist">By Artist</button>
-				</form>
-				<form method="get" action="#" th:action = "@{/discover_albums}" >
-		    		<button class="link" name="browseBy" value="album">By Album</button>
-				</form>
-				<form method="get" action="#" th:action= "@{/all_genres}" >
-		    		<button class="link" name="browseBy" value="genre">By Genre</button>
+				<form method="get" action="google.com" >
+		    		<button class="link" name="browseBy" value="title">By Title</button>
+		    		<input type="hidden" name="orderType" value="DESC"></input>
 				</form>
 			</div>
 		</div>
-		
+
 			<form class="searchBar" method="get" action="">
 				<input type="hidden" name="browseBy" value="advSearch"></input>
 				<input type="text" name="advTitle" placeholder="Search by artist or genre..."></input>
 			</form>
-			
-			
+
+
 			<div class = "advSearch">
 				<a href = "advSearch">Advanced Search</a>
 			</div>
-			
+
 			<div sec:authorize="isAnonymous()">
 				<div class="login">
 					<a href="login">Login</a>
 				</div>
 			</div>
 
+
 			<div sec:authorize="isAuthenticated()">
-				<div class="logout">
-					<a href="logout">Logout</a>
-				</div>
+        		<form class="login" th:action="@{/logout}" method="post">
+            		<input class="logout" type="submit" value="Logout"/>
+        		</form>
 			</div>
 
-
-			<!-- <div sec:authorize="isAuthenticated()">
-        		<div class="logout" th:action="@{/logout}" method="post">
-            		<input type="submit" value="Logout"/>
-        		</div>
-			</div> -->
-		
 </header>
