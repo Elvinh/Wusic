@@ -25,30 +25,31 @@ public class ArtistRepository {
 	}
 	
 	class ArtistMapper implements RowMapper {
-		
-		@Override 
+
+		@Override
 		public Artist mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Artist artist = new Artist();
 			artist.setId(rs.getString("artist_id"));
 			artist.setName(rs.getString("name"));
-			
+
 			return artist;
 		}
 	}
-	public List<Artist> discoverArtists() { 
-		 List<Artist> randomArtists = new ArrayList<>();
 
-	        List<Map<String, Object>> maps =
-	                jdbcTemplate.queryForList("select * from artist order by rand() limit 100");
-	        for (Map<String, Object> map : maps) {
+	public List<Artist> discoverArtists() {
+		List<Artist> randomArtists = new ArrayList<>();
 
-	            Artist artist = new Artist();
-	            artist.setId((String) map.get("artist_id"));
-	            artist.setName((String) map.get("name"));
+		List<Map<String, Object>> maps =
+				jdbcTemplate.queryForList("select * from artist order by rand() limit 100");
+		for (Map<String, Object> map : maps) {
 
-	            randomArtists.add(artist);
-	        }
-	        
-	        return randomArtists;
+			Artist artist = new Artist();
+			artist.setId((String) map.get("artist_id"));
+			artist.setName((String) map.get("name"));
+
+			randomArtists.add(artist);
+		}
+
+		return randomArtists;
 	}
 }

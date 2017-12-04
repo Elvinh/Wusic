@@ -2,7 +2,7 @@
 .page-head {
 	background-color: rgb(54, 25, 25);
     background-color: rgba(17, 17, 17, 0.8);
-        background-color: white;
+    background-color: white;
     box-shadow: 1px 2px 14px 0px rgba(0,0,0,0.75);
     display: flex;
     align-items: center;
@@ -11,12 +11,12 @@
 	z-index: 2;
 	top: 0;
 	left: 0;
-	
 }
+
 .page-head h1 {
 	flex-shrink: 0;
 	margin: 15px;
-	font-family: 'Cinzel', serif;
+	font-family: 'Titillium Web', sans-serif;
 }
 
 .page-head h1 a {
@@ -36,6 +36,7 @@
     outline: none;
 
 }
+
 /* The container div - needed to position the dropdown content */
 .dropdown {
     position: relative;
@@ -66,8 +67,8 @@
 
 
 /* Change color of dropdown links on hover HEY */
-
 .dropdown-content button:hover {background-color: #f1f1f1}
+
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
     display: block;
@@ -83,6 +84,7 @@
 	flex-grow: 1;
 	min-width: 9rem; 
 }
+
 .searchBar 	input {
 	box-sizing: border-box;
    	font-size: 13px;
@@ -98,21 +100,20 @@
     padding: 12px 20px 12px 40px;
    	outline: none;
    	color: #b5b5b5;
-
 }
-.login {
-font-family: 'Cinzel', serif;
-  flex-shrink: 0;
-	border-bottom: solid #d01717 3px;
 
+.login {
+	font-family: 'Titillium Web', sans-serif;
+    flex-shrink: 0;
+	border-bottom: solid #d01717 3px;
  }
+
 .login a {
     display: block;
     color: #d01717;
     text-align: center;
     padding: 25px 25px;
     text-decoration: none;
-    
 }
 
 .login a:hover {
@@ -121,10 +122,11 @@ font-family: 'Cinzel', serif;
 }
 
 .logout {
-  flex-shrink: 0;
-  font-family: 'Cinzel', serif;
+    flex-shrink: 0;
+	font-family: 'Titillium Web', sans-serif;
 
  }
+
 .logout a {
     display: block;
     color: #d01717;
@@ -138,20 +140,18 @@ font-family: 'Cinzel', serif;
     color: white;
 }
 
-.myCart
-{
-	font-family: 'Cinzel', serif;
+.myCart {
+	font-family: 'Titillium Web', sans-serif;
   	flex-shrink: 0;
 }
 
-.myCart a
-{
-
+.myCart a {
     color: #d01717;
     text-align: center;
     padding: 24px 24px;
     text-decoration: none;
 }
+
 .myCart i{
 
 	background-color: gray;
@@ -174,15 +174,12 @@ font-family: 'Cinzel', serif;
 
 
 
-.advSearch
-{
-	font-family: 'Cinzel', serif;
+.advSearch {
+    font-family: 'Titillium Web', sans-serif;
   	flex-shrink: 0;
-
 }
 
-.advSearch a
-{
+.advSearch a {
 	display: block;
     color: #d01717;
     text-align: center;
@@ -190,8 +187,7 @@ font-family: 'Cinzel', serif;
     text-decoration: none;
 }
 
-.advSearch a:hover
-{
+.advSearch a:hover {
  	background-color: #d01717;
     color: white;
 }

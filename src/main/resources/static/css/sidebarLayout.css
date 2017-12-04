@@ -1,53 +1,48 @@
-	.sidebar
-	{
-		position:fixed;
-		left: 0;
-		top: 74px;
-		background-color: rgba(17, 17, 17, 0.9);
-		height: 100%;
-		width: 250px;
-		z-index: 1;
-		overflow-x: hidden;
-		padding-top: 25px;
-		transition: 0.5s;
-		float: bottom;
-	}
-	
-	.sidebar a
-	{
-		padding: 5px;
-		text-decoration: none;
-		font-size: 15px;
-		color: #818181;
-		display: block;
-		transtion: 0.3s;
-	}
-	.categories {
-		padding: 5px;
-	}
-	
-	.sidebar a:hover, .offcanvas a:focus
-	{
-		color: #f1f1f1;
-	}
-	
-	h3
-	{
-		padding-left: 8px;
-		font-family: 'Cinzel', serif;
-		color: #d01717;
-		
-	}
-	.buttonContainer
-	{
-		font-family: 'Cinzel', serif;
-		font-size: 20px;
-		font-color: white;
-		list-style-type: none;
-	}
-	
-	.content {
-		margin-left: 250px;
-		padding: 16px;
-	}
-	
+.sidebar {
+    position:fixed;
+    left: 0;
+    top: 74px;
+    background-color: rgba(17, 17, 17, 0.9);
+    height: 100%;
+    width: 250px;
+    z-index: 1;
+    overflow-x: hidden;
+    padding-top: 25px;
+    transition: 0.5s;
+    float: bottom;
+}
+
+.sidebar a {
+    padding: 5px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #aaa;
+    display: block;
+    transtion: 0.3s;
+}
+
+.categories {
+    padding: 5px;
+}
+
+.sidebar a:hover, .offcanvas a:focus {
+    color: #f1f1f1;
+}
+
+h3 {
+    padding-left: 8px;
+    font-family: 'Titillium Web', sans-serif;
+    color: #eee;
+}
+
+.buttonContainer{
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 20px;
+    font-color: white;
+    list-style-type: none;
+}
+
+.content {
+    margin-left: 250px;
+    padding: 16px;
+}

@@ -1,5 +1,6 @@
 <head th:fragment="header">
-    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Cinzel" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat+Alternates:300" rel="stylesheet" type="text/css"/>
+
     <link th:href="@{css/headerLayout.css}" rel="stylesheet" />
 </head>
 <header class="page-head">
@@ -34,15 +35,15 @@
 			
 			<div sec:authorize="isAnonymous()">
 				<div class="login">
-					<a href="login">LOGIN</a>
+					<a href="login">Login</a>
 				</div>
 			</div>
 
 
 			<div sec:authorize="isAuthenticated()">
-        		<form class="login" th:action="@{/logout}" method="post">
-            		<input type="submit" value="Sign Out"/>
-        		</form>
+        		<div class="logout" th:action="@{/logout}" method="post">
+            		<input type="submit" value="Logout"/>
+        		</div>
 			</div>
 		
 </header>
