@@ -1,5 +1,7 @@
 package com.sjsu.wusic.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,10 +22,17 @@ public class SongController {
 	private ArtistRepository artistDao;
 	
 	@RequestMapping("/song")
-	public String song(Model model, @RequestParam(value="id", defaultValue="1") String id) {
+	public String song(Model model, @RequestParam(value="id", defaultValue="SOAAAQN12AB01856D3s") String id) {
 		Song s = songDao.findById(id);
 		model.addAttribute("name", s.getTitle());
 		return "displaySong";
+	}
+	
+	@RequestMapping("/discover_songs")
+	public String song(Model model) {
+		List<Song> songsInAlbum = songDao.findAllSongs();
+		model.addAttribute("songs", songsInAlbum);
+		return "displayDiscoverSongs";
 	}
 
 	@RequestMapping("/songandartist")

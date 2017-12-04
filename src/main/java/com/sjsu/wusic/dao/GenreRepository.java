@@ -39,7 +39,8 @@ public class GenreRepository {
 			
 			genresByArtist.add(genre);
 		}
-		
+		if(genresByArtist.isEmpty())
+			genresByArtist.add(new Genre());
 		return genresByArtist;
 	}
 	
@@ -55,4 +56,22 @@ public class GenreRepository {
 			return genre;
 		}
 	}
+	
+public List<Genre> listGenres() {
+		
+		List<Genre> genreList = new ArrayList<>();
+		
+		List<Map<String, Object>> maps = jdbcTemplate.queryForList("select * from genre");
+		
+		for(Map<String, Object> map : maps) {
+			System.out.println("repo");
+			Genre genre = new Genre();
+			genre.setName((String) map.get("name"));
+			genreList.add(genre);
+		}
+//		if(genreList.isEmpty())
+//			genreList.add(new Genre());
+		return genreList;
+	}
+	
 }

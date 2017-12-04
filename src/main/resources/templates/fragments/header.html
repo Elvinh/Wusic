@@ -5,11 +5,19 @@
 <header class="page-head">
 		<h1><a href="home">WUSIC</a></h1>
 		<div class="dropdown">
-			<button class="dropbtn">Browse</button>
+			<button class="dropbtn">Discover</button>
 			<div class="dropdown-content">
-				<form method="get" action="google.com" >
-		    		<button class="link" name="browseBy" value="title">By Title</button>
-		    		<input type="hidden" name="orderType" value="DESC"></input>
+				<form method="get" action="#" th:action = "@{/discover_songs}" >
+		    		<button class="link" name="browseBy" value="song">By Song</button>
+				</form>
+				<form method="get" action="#" th:action = "@{/discover_artists}" >
+		    		<button class="link" name="browseBy" value="artist">By Artist</button>
+				</form>
+				<form method="get" action="#" th:action = "@{/discover_albums}" >
+		    		<button class="link" name="browseBy" value="album">By Album</button>
+				</form>
+				<form method="get" action="#" th:action= "@{/all_genres}" >
+		    		<button class="link" name="browseBy" value="genre">By Genre</button>
 				</form>
 			</div>
 		</div>
@@ -35,14 +43,6 @@
         		<form class="login" th:action="@{/logout}" method="post">
             		<input type="submit" value="Sign Out"/>
         		</form>
-			</div>
-
-			
-			<div class = "myCart">
-				<a href = "google.com">
-
-					</a>
-				<i></i>
 			</div>
 		
 </header>

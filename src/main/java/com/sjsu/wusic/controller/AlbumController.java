@@ -49,6 +49,14 @@ public class AlbumController {
         return "displayAlbum";
 
     }
+	@RequestMapping("/discover_albums")
+	 public String songsInAlbum(Model model) {
+      List<Album> discoverAlbum = albumDao.discoverAlbums();
+      model.addAttribute("albums", discoverAlbum);
+      return "displayDiscoverAlbums";
+
+  }
+	
 
 
 }

@@ -37,6 +37,27 @@ public class AlbumRepository {
 		}
 	}
 	
+	public List<Album> discoverAlbums() { 
+		 List<Album> albumsDiscovered = new ArrayList<>();
+
+	        List<Map<String, Object>> maps =
+	                jdbcTemplate.queryForList("select * from album order by rand() limit 100");
+
+	        for (Map<String, Object> map : maps) {
+
+	            Album album = new Album();
+	            album.setName((String) map.get("name"));
+	            album.setYear((Integer) map.get("year"));
+
+	            albumsDiscovered.add(album);
+	        }
+	        
+	        return albumsDiscovered;
+		
+	}
+	
+	
+	
 	public List<Album> findByArtistId(String artistId) { 
 		 List<Album> albumsByArtist = new ArrayList<>();
 

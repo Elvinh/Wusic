@@ -41,4 +41,13 @@ public class ArtistController {
         return "displayArtist";
 
     }
+    @RequestMapping("/discover_artists")
+    public String artist(Model model) {
+
+        List<Artist> artist = artistDao.discoverArtists();
+       model.addAttribute("artists",artist);
+
+        return "displayDiscoverArtists";
+
+    }
 }

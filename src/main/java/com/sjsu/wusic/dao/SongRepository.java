@@ -37,6 +37,24 @@ public class SongRepository {
 		}
 	}
 	
+	public List<Song> findAllSongs() { 
+		 List<Song> allSongs = new ArrayList<>();
+	        List<Map<String, Object>> maps =
+	                jdbcTemplate.queryForList("select * from song order by rand() limit 100");
+        	System.out.println("for method");
+	        for (Map<String, Object> map : maps) {
+	            Song song = new Song();
+	            song.setId((String) map.get("id"));
+	            song.setTitle((String) map.get("title"));
+	            song.setYear((Integer) map.get("year"));
+	            song.setDuration((Float) map.get("duration"));
+	            allSongs.add(song);
+	        }
+        	System.out.println("for return");
+	        return allSongs;
+		
+	}
+	
 	public List<Song> findByAlbumName(String name) { 
 		 List<Song> songsInAlbum = new ArrayList<>();
 	        List<Map<String, Object>> maps =
