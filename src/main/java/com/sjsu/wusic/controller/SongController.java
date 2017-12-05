@@ -1,5 +1,6 @@
 package com.sjsu.wusic.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.sjsu.wusic.dao.PlaylistsByUserRepository;
@@ -38,14 +39,30 @@ public class SongController {
 	
 	@RequestMapping("/discover_songs")
 	public String song(Model model) {
-		List<Song> songsInAlbum = songDao.findAllSongs();
+		List<Artist> artists = new ArrayList<>();
+		List<String> albums = new ArrayList<>();
+		
+		List<Song> songs= songDao.findAllSongs();
+
+		for(Song song : songs) {
+			Artist artist = songDao.findArtistOfSong(song.getId());
+			artists.add(artist);
+			String albumName = songDao.findAlbumOfSong(song.getId());
+			albums.add(albumName);
+		}
+		
 		List<Playlist> playlists = playlistsByUserDao.playlistsByUser(
 				SecurityContextHolder.getContext().getAuthentication().getName());
+		
+		model.addAttribute("songs", songs);
+		model.addAttribute("artists", artists);
+		model.addAttribute("albums", albums);
+		model.addAttribute("playlist_options", playlists);
+		model.addAttribute("songs", songs);
 
 		model.addAttribute("playlist_options", playlists);
-		model.addAttribute("songs", songsInAlbum);
-
 		return "displayDiscoverSongs";
+
 	}
 
 	@RequestMapping("/songandartist")

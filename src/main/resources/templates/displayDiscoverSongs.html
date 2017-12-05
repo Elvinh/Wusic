@@ -18,29 +18,28 @@
         <thead>
         <tr>
             <th>Title</th>
+            <th>Artist</th>
+            <th>Album</th>
             <th>Year</th>
             <th>Duration</th>
         </tr>
         </thead>
 
-        <tbody>
-        <tr th:each="song : ${songs}">
-            <td th:text="${song.title}"></td>
-            <td th:text="${song.year}"></td>
-            <td th:text="${song.duration}"></td>
+		<tbody>
+        <tr th:each="index : ${#numbers.sequence( 0, #arrays.length(songs)-1)}">
+            <td th:text="${songs[index].title}">dsf</td>
+            <td><a th:text="${artists[index].name}" th:href="@{'/artist?artist_id=' + ${artists[index].id}}">a</a></td>
+            <td><a th:text="${albums[index]}" th:href="@{'/get_album_songs?name=' + ${albums[index]}}">a</a></td>
+            <td th:text="${songs[index].year}"></td>
+            <td th:text="${songs[index].duration}"></td>
             <td>
-                <form action="add_song_to_playlist" method="get">
-                    <input type="hidden" name="song_id" th:value="${song.id}"/>
-                    <select name="playlist_id">
-                        <option label="Add to Playlist..."></option>
-                        <div th:each="playlist : ${playlist_options}">
-                            <option th:value="${playlist.id}" th:text="${playlist.name}"></option>
-                        </div>
-                        <option label="+ Create New Playlist"></option>
-                    </select>
-                    <Button type="submit">Add</Button>
+                <form action="remove_song_from_playlist" method="get">
+                    <input type="hidden" name="song_id" th:value="${songs[index].id}"/>
+                    <input type="hidden" name="playlist_id" th:value="${playlist_id}"/>
+                    <Button type="submit">Remove</Button>
                 </form>
             </td>
+
         </tr>
         </tbody>
     </table>
