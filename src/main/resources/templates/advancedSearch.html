@@ -106,6 +106,7 @@
 	<h2>Advanced Search</h2>
 		<div class = "container">
 			<label>Search by </label> 
+			<form method="get" th:action="@{/search}">
 				<div class="select-style">
 					<select name="type">
                         <option label="song" value="song"></option>
@@ -114,10 +115,8 @@
                         <option label="album" value="album"></option>
                 	</select>  
 				</div>
-			<form method="get" th:action="@{/search}">
-				<input type = "text" placeholder = "" name = "query"/>
-
-				<button type="submit" class="SearchBtn">Search</button>
+			<input type = "text" placeholder = "" name = "query"/>
+			<button type="submit" class="SearchBtn">Search</button>
 			</form>
 		</div>
 	</div>
