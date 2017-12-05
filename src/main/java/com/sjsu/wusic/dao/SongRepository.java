@@ -44,7 +44,7 @@ public class SongRepository {
 
 		for (Map<String, Object> map : maps) {
 			Song song = new Song();
-			song.setId((String) map.get("id"));
+			song.setId((String) map.get("song_id"));
 			song.setTitle((String) map.get("title"));
 			song.setYear((Integer) map.get("year"));
 			song.setDuration((Float) map.get("duration"));

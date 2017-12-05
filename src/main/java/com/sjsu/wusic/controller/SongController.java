@@ -39,12 +39,11 @@ public class SongController {
 	@RequestMapping("/discover_songs")
 	public String song(Model model) {
 		List<Song> songsInAlbum = songDao.findAllSongs();
-		model.addAttribute("songs", songsInAlbum);
-
 		List<Playlist> playlists = playlistsByUserDao.playlistsByUser(
 				SecurityContextHolder.getContext().getAuthentication().getName());
 
 		model.addAttribute("playlist_options", playlists);
+		model.addAttribute("songs", songsInAlbum);
 
 		return "displayDiscoverSongs";
 	}
