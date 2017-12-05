@@ -13,41 +13,41 @@ import com.sjsu.wusic.model.Playlist;
 @Repository
 public class PlaylistRepository {
 
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
-	
-	public Playlist findById(int id) {
-		return (Playlist) jdbcTemplate.queryForObject("SELECT * FROM playlist WHERE playlist_id = ?", new Object[] {id}, new PlaylistMapper());
-	}
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
-	public void addSongToPlaylist(String songId, int playlistId){
+    public Playlist findById(int id) {
+        return (Playlist) jdbcTemplate.queryForObject("SELECT * FROM playlist WHERE playlist_id = ?", new Object[]{id}, new PlaylistMapper());
+    }
 
-		jdbcTemplate.update("INSERT INTO song_in_playlist VALUES (?, ?);", songId, playlistId);
+    public void addSongToPlaylist(String songId, int playlistId) {
 
-		// increment song count
-		int updatedSongCount = findById(playlistId).getSongCount() + 1;
-		jdbcTemplate.update("UPDATE playlist SET song_count = ? WHERE playlist_id = ?", updatedSongCount, playlistId);
-	}
+        jdbcTemplate.update("INSERT INTO song_in_playlist VALUES (?, ?);", songId, playlistId);
 
-	public void removeSongFromPlaylist(String songId, int playlistId){
+        // increment song count
+        int updatedSongCount = findById(playlistId).getSongCount() + 1;
+        jdbcTemplate.update("UPDATE playlist SET song_count = ? WHERE playlist_id = ?", updatedSongCount, playlistId);
+    }
 
-		jdbcTemplate.update("DELETE FROM song_in_playlist WHERE song_id = ? AND playlist_id = ?", songId, playlistId);
+    public void removeSongFromPlaylist(String songId, int playlistId) {
 
-		int updatedSongCount = jdbcTemplate.queryForObject("SELECT COUNT(*) from song_in_playlist WHERE playlist_id = ?", new Object[] {playlistId}, Integer.class);
+        jdbcTemplate.update("DELETE FROM song_in_playlist WHERE song_id = ? AND playlist_id = ?", songId, playlistId);
 
-		jdbcTemplate.update("UPDATE playlist SET song_count = ? WHERE playlist_id = ?", updatedSongCount, playlistId);
-	}
+        int updatedSongCount = jdbcTemplate.queryForObject("SELECT COUNT(*) from song_in_playlist WHERE playlist_id = ?", new Object[]{playlistId}, Integer.class);
 
-	class PlaylistMapper implements RowMapper {
-		
-		@Override
-		public Playlist mapRow(ResultSet rs, int rowNum) throws SQLException {
-			Playlist playlist = new Playlist();
-			playlist.setId(rs.getInt("playlist_id"));
-			playlist.setName(rs.getString("name"));
-			playlist.setSongCount(rs.getInt("song_count"));
-			
-			return playlist;
-		}
-	}
+        jdbcTemplate.update("UPDATE playlist SET song_count = ? WHERE playlist_id = ?", updatedSongCount, playlistId);
+    }
+
+    class PlaylistMapper implements RowMapper {
+
+        @Override
+        public Playlist mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Playlist playlist = new Playlist();
+            playlist.setId(rs.getInt("playlist_id"));
+            playlist.setName(rs.getString("name"));
+            playlist.setSongCount(rs.getInt("song_count"));
+
+            return playlist;
+        }
+    }
 }

@@ -12,7 +12,6 @@ import com.sjsu.wusic.dao.GenreRepository;
 import com.sjsu.wusic.dao.SongsInGenreRepository;
 import com.sjsu.wusic.dao.SongsInGenreRepository.SongAndArtist;
 import com.sjsu.wusic.model.Genre;
-import com.sjsu.wusic.model.Song;
 
 @Controller
 public class SongsInGenreController {

@@ -11,7 +11,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.sjsu.wusic.model.Album;
 import com.sjsu.wusic.model.Artist;
 
 @Repository

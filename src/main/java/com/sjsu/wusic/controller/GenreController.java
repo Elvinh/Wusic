@@ -22,7 +22,6 @@ public class GenreController {
 		model.addAttribute("genres", genre);
 		
 		return "displayGenres";
-		
 	}
 
 }

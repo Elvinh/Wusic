@@ -1,13 +1,11 @@
 package com.sjsu.wusic.controller;
 
-import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sjsu.wusic.dao.PlaylistsByUserRepository;
@@ -16,7 +14,6 @@ import com.sjsu.wusic.dao.UserRepository;
 import com.sjsu.wusic.model.Playlist;
 import com.sjsu.wusic.model.Song;
 import com.sjsu.wusic.model.User;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class UserInfoController {

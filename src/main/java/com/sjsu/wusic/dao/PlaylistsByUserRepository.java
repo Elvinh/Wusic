@@ -19,22 +19,22 @@ public class PlaylistsByUserRepository {
 	public List<Playlist> playlistsByUser(String username) {
 		
 		List<Playlist> playlistsByUser = new ArrayList<>();
-		
-        List<Map<String, Object>> maps =
-                jdbcTemplate.queryForList("SELECT playlist.playlist_id, playlist.name, playlist.song_count "
-                		+ "FROM user_owns_playlist INNER JOIN playlist INNER JOIN users "
-                		+ "WHERE user_owns_playlist.playlist_id = playlist.playlist_id "
-                		+ "AND user_owns_playlist.username = users.username AND users.username= ?", username);
 
-        for (Map<String, Object> map : maps) {
+		List<Map<String, Object>> maps =
+				jdbcTemplate.queryForList("SELECT playlist.playlist_id, playlist.name, playlist.song_count "
+						+ "FROM user_owns_playlist INNER JOIN playlist INNER JOIN users "
+						+ "WHERE user_owns_playlist.playlist_id = playlist.playlist_id "
+						+ "AND user_owns_playlist.username = users.username AND users.username= ?", username);
 
-            Playlist playlist = new Playlist();
-            playlist.setId((Integer) map.get("playlist_id"));
-            playlist.setName((String) map.get("name"));
-            playlist.setSongCount((Integer) map.get("song_count"));
+		for (Map<String, Object> map : maps) {
 
-            playlistsByUser.add(playlist);
-        }
+			Playlist playlist = new Playlist();
+			playlist.setId((Integer) map.get("playlist_id"));
+			playlist.setName((String) map.get("name"));
+			playlist.setSongCount((Integer) map.get("song_count"));
+
+			playlistsByUser.add(playlist);
+		}
 		
 		return playlistsByUser;
 	}

@@ -32,10 +32,8 @@ public class SongsLikedByUserRepository {
             song.setYear((Integer) map.get("year"));
 
             songsLikedByUser.add(song);
-
         }
 
         return songsLikedByUser;
-
     }
 }

@@ -8,8 +8,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.sjsu.wusic.model.Artist;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

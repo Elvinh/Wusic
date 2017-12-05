@@ -1,6 +1,5 @@
 package com.sjsu.wusic.controller;
 
-import com.sjsu.wusic.WebSecurityConfig;
 import com.sjsu.wusic.dao.ArtistRepository;
 import com.sjsu.wusic.dao.PlaylistsByUserRepository;
 import com.sjsu.wusic.dao.SongsByArtistRepository;
@@ -8,7 +7,6 @@ import com.sjsu.wusic.model.Artist;
 import com.sjsu.wusic.model.Playlist;
 import com.sjsu.wusic.model.Song;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

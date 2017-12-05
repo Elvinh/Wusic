@@ -11,8 +11,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.sjsu.wusic.dao.ArtistRepository.ArtistMapper;
-import com.sjsu.wusic.model.Song;
 import com.sjsu.wusic.model.User;
 
 @Repository
@@ -32,23 +30,23 @@ public class UserRepository {
 	 * @return a List of Users following a given User  
 	 */
 	public List<User> getUserFollowers(String username) {
-		
+
 		List<User> userFollowers = new ArrayList<>();
-		
-        List<Map<String, Object>> maps =
-                jdbcTemplate.queryForList("SELECT fr.name, fr.username FROM user_follows_user INNER JOIN users fg "
-                		+ "INNER JOIN users fr WHERE fg.username = following_id AND fr.username = follower_id "
-                		+ "AND fg.username = ?; ", username);
 
-        for (Map<String, Object> map : maps) {
-        		User user = new User();
-        		user.setName((String) map.get(("name")));
-        		user.setUsername((String) map.get(("username")));
-        		
-        		userFollowers.add(user);
-        }
+		List<Map<String, Object>> maps =
+				jdbcTemplate.queryForList("SELECT fr.name, fr.username FROM user_follows_user INNER JOIN users fg "
+						+ "INNER JOIN users fr WHERE fg.username = following_id AND fr.username = follower_id "
+						+ "AND fg.username = ?; ", username);
 
-        return userFollowers;
+		for (Map<String, Object> map : maps) {
+			User user = new User();
+			user.setName((String) map.get(("name")));
+			user.setUsername((String) map.get(("username")));
+
+			userFollowers.add(user);
+		}
+
+		return userFollowers;
 	}
 
 	/**
@@ -66,25 +64,25 @@ public class UserRepository {
                 		+ "INNER JOIN users fr WHERE fg.username = following_id AND fr.username = follower_id "
                 		+ "AND fr.username = ?; ", username);
 
-        for (Map<String, Object> map : maps) {
-        		User user = new User();
-        		user.setName((String) map.get(("name")));
-        		user.setUsername((String) map.get(("username")));
-        		
-        		userFollowing.add(user);
-        }
+		for (Map<String, Object> map : maps) {
+			User user = new User();
+			user.setName((String) map.get(("name")));
+			user.setUsername((String) map.get(("username")));
 
-        return userFollowing;
+			userFollowing.add(user);
+		}
+
+		return userFollowing;
 	}	
 	
 	class UserMapper implements RowMapper {
-		
-		@Override 
+
+		@Override
 		public User mapRow(ResultSet rs, int rowNum) throws SQLException {
 			User user = new User();
 			user.setName(rs.getString("name"));
 			user.setUsername(rs.getString("username"));
-			
+
 			return user;
 		}
 	}
