@@ -4,7 +4,7 @@
     top: 74px;
     background-color: rgba(17, 17, 17, 0.9);
     height: 100%;
-    width: 250px;
+    width: 150px;
     z-index: 1;
     overflow-x: hidden;
     padding-top: 25px;
@@ -29,6 +29,13 @@
     color: #f1f1f1;
 }
 
+.playlistButton:hover {
+    background: #212121;
+}
+
+.usersButton:hover {
+    background: #212121;
+}
 h3 {
     padding-left: 8px;
     font-family: 'Titillium Web', sans-serif;
@@ -40,9 +47,10 @@ h3 {
     font-size: 20px;
     font-color: white;
     list-style-type: none;
+
 }
 
 .content {
-    margin-left: 250px;
+    margin-left: 150px;
     padding: 16px;
 }

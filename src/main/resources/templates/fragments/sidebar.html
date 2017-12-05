@@ -3,15 +3,19 @@
     <link th:href="@{css/sidebarLayout.css}" rel="stylesheet"/>
 </head>
 <div class="sidebar" th:fragment="sidebar">
-    <h3>Browse</h3>
+    <div sec:authorize="isAuthenticated()"> 
+    <h3	th:text="'Logged in as ' + ${#authentication.getPrincipal().getUsername()}">Browse</h3>
+    </div>
+
     <ul class="categories">
         <div class="buttonContainer">
-            <a href="/playlists">Browse Playlists</a>
-            <a href="/users">Browse Users</a>
-            <a href="">Placeholder</a>
-            <a href="">Placeholder</a>
-            <a href="">Placeholder</a>
-            <a href="">Placeholder</a>
+            <a href="/all_genres">Browse</a>
+        	<div class="playlistButton">
+        	            <a href="/playlists">Playlists</a>
+        	</div>
+        	        	<div class="usersButton">
+            <a href="/users">Users</a>
+                 	</div>
         </div>
     </ul>
 </div>
