@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.sjsu.wusic.model.Album;
+import com.sjsu.wusic.model.Artist;
 
 @Repository
 public class AlbumRepository {
@@ -33,6 +34,22 @@ public class AlbumRepository {
             album.setYear(rs.getInt("year"));
 
             return album;
+        }
+    }
+    
+    public Artist findAlbumArtist(String name) {
+        return (Artist) jdbcTemplate.queryForObject("select * from artist where artist_id = (select artist_id from artist_in_album where album_name = ?)", new Object[]{name}, new AlbumArtistMapper());
+    }
+
+    class AlbumArtistMapper implements RowMapper {
+
+        @Override
+        public Artist mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Artist artist = new Artist();
+            artist.setName(rs.getString("name"));
+            artist.setId(rs.getString("artist_id"));
+
+            return artist;
         }
     }
 

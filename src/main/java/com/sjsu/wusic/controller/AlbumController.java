@@ -30,8 +30,10 @@ public class AlbumController {
 	@RequestMapping("/get_album_songs")
 	 public String songsInAlbum(Model model, @RequestParam(value = "name") String name) {
        List<Song> songsInAlbum = albumSongsDao.findByAlbumName(name);
+       Artist albumArtist = albumDao.findAlbumArtist(name);
        Album album = albumDao.findByName(name);
        model.addAttribute("album_name", album.getName());
+       model.addAttribute("artist", albumArtist);
        model.addAttribute("songs", songsInAlbum);
        
        return "displaySongsInAlbum";
