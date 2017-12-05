@@ -62,9 +62,15 @@
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
 		</dependency>
+		<dependency>
+      		<groupId>org.springframework.boot</groupId>
+	      <artifactId>spring-boot-starter-tomcat</artifactId>
+	      <scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
+	   <finalName>wusic</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
