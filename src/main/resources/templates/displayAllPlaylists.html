@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Wusic | Playlists</title>
+    <link rel="icon" type="image/ico" href="images/favicon.ico"/>
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet" type="text/css"/>
+    <link th:href="@{css/pageLayout.css}" rel="stylesheet"/>
+</head>
+<body>
+<div lang="en" th:replace="fragments/header :: header"></div>
+<div lang="en" th:replace="fragments/sidebar :: sidebar"></div>
+
+<div class="content">
+    <h1>Playlists</h1>
+    <table>
+
+        <thead>
+        <tr>
+            <th>Playlist Name</th>
+            <th>Song Count</th>
+            <th>Playlist Owner</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="playlist : ${playlists}">
+            <td><a th:text="${playlist.name}" th:href="@{'/playlist?id=' + ${playlist.id}}">a</a></td>
+            <td th:text="${playlist.songCount}"></td>
+            <td><a th:text="${playlist.userDisplayName}" th:href="@{'/user?username=' + ${playlist.username}}">a</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

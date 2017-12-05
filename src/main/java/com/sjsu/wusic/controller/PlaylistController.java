@@ -3,6 +3,7 @@ package com.sjsu.wusic.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sjsu.wusic.model.PlaylistWithUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,10 +24,20 @@ public class PlaylistController {
 	
 	@Autowired
 	private PlaylistRepository playlistDao;
-	
+
 	@Autowired
 	private SongRepository songDao;
-	
+
+	@RequestMapping("/playlists")
+	public String disoverPlaylists(Model model) {
+
+        List<PlaylistWithUser> playlistWithUsers = playlistDao.getAllPlaylists();
+
+        model.addAttribute("playlists", playlistWithUsers);
+
+	    return "displayAllPlaylists";
+    }
+
 	@RequestMapping("/playlist")
 	public String playlist(Model model, @RequestParam(value = "id") int id) {
 		
@@ -35,12 +46,12 @@ public class PlaylistController {
 		
 		List<Artist> artistInPlaylist = new ArrayList<>();
 		List<String> albumsInPlaylist = new ArrayList<>();
+
 		for(Song song : songsInPlaylist) {
 			Artist artist = songDao.findArtistOfSong(song.getId());
 			artistInPlaylist.add(artist);
 			String albumName = songDao.findAlbumOfSong(song.getId());
 			albumsInPlaylist.add(albumName);
-			
 		}
 		
 		model.addAttribute("playlist_name", playlistName);
