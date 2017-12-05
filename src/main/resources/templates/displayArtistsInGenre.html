@@ -22,7 +22,7 @@
 
             <tbody>
             <tr th:each="artist : ${artists}">
-                <td th:text="${artist.name}"></td>
+                <td><a th:text="${artist.name}" th:href="@{'/artist?artist_id=' + ${artist.id}}">a</a></td>
             </tr>
             </tbody>
         </table>
