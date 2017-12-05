@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Wusic | Song Info</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head >
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Wusic | Error</title>
 	<link rel="icon" type="image/ico" href="images/favicon.ico"/>
 	<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet" type="text/css"/>
 	<link th:href="@{css/pageLayout.css}" rel="stylesheet"/>
@@ -10,11 +10,8 @@
 <body>
 	<div lang="en" th:replace="fragments/header :: header"> </div>
 	<div lang="en" th:replace="fragments/sidebar :: sidebar"> </div>
-	
 	<div class="content">
-		<h1 th:text="'Song: ' + ${name} + ' Year:' + ${year}"> </h1>
-    	<h1 th:text="'Artist:' + ${artist_name}" ></h1>
+		<h3>We are sorry. There was an error with your request.</h3>
 	</div>
-
 </body>
 </html>
