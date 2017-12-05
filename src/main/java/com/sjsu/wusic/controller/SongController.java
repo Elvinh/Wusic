@@ -2,7 +2,10 @@ package com.sjsu.wusic.controller;
 
 import java.util.List;
 
+import com.sjsu.wusic.dao.PlaylistsByUserRepository;
+import com.sjsu.wusic.model.Playlist;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,13 +21,18 @@ public class SongController {
 
 	@Autowired
 	private SongRepository songDao;
+
 	@Autowired 
 	private ArtistRepository artistDao;
-	
+
+	@Autowired
+	private PlaylistsByUserRepository playlistsByUserDao;
+
 	@RequestMapping("/song")
 	public String song(Model model, @RequestParam(value="id", defaultValue="SOAAAQN12AB01856D3s") String id) {
 		Song s = songDao.findById(id);
 		model.addAttribute("name", s.getTitle());
+
 		return "displaySong";
 	}
 	
@@ -32,6 +40,14 @@ public class SongController {
 	public String song(Model model) {
 		List<Song> songsInAlbum = songDao.findAllSongs();
 		model.addAttribute("songs", songsInAlbum);
+
+		List<Playlist> playlists = playlistsByUserDao.playlistsByUser(
+				SecurityContextHolder.getContext().getAuthentication().getName());
+
+		System.out.println("playlist options: " + playlists.size());
+
+		model.addAttribute("playlist_options", playlists);
+
 		return "displayDiscoverSongs";
 	}
 
