@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.sjsu.wusic.model.Album;
 import com.sjsu.wusic.model.Artist;
+import com.sjsu.wusic.model.Genre;
 import com.sjsu.wusic.model.Song;
 
 @Repository
@@ -57,6 +59,44 @@ public class SearchRepository {
 		}
 
 		return artistResults;
+	}
+	
+	public List<Genre> findGenres(String query) { 
+		List<Genre> genreResults = new ArrayList<>();
+		query = "%" + query + "%";
+		System.out.println(query);
+		List<Map<String, Object>> maps = 
+				jdbcTemplate.queryForList("SELECT * FROM genre where name LIKE ?", query);
+		
+
+		for (Map<String, Object> map : maps) {
+
+			Genre genre = new Genre();
+			genre.setName((String) map.get("name"));
+            
+			genreResults.add(genre);
+		}
+
+		return genreResults;
+	}
+	
+	public List<Album> findAlbums(String query) { 
+		List<Album> albumResults = new ArrayList<>();
+		query = "%" + query + "%";
+		System.out.println(query);
+		List<Map<String, Object>> maps = 
+				jdbcTemplate.queryForList("SELECT * FROM album where name LIKE ?", query);
+		
+
+		for (Map<String, Object> map : maps) {
+
+			Album album = new Album();
+			album.setName((String) map.get("name"));
+			album.setYear((int) map.get("year"));
+			albumResults.add(album);
+		}
+
+		return albumResults;
 	}
 	
 }
