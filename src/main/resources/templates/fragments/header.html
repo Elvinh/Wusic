@@ -23,6 +23,7 @@
     </div>
 
     <form class="searchBar" method="get" th:action="@{/search}">
+        <input type="hidden" name="type" value="song"/>
         <input type="text" name="query" placeholder="Search by song..."></input>
     </form>
 
