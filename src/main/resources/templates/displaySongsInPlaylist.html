@@ -25,25 +25,23 @@
             <th>Artist</th>
             <th>Album</th>
             <th>Year</th>
-            <th>Duration</th>
+            <th>&#128336;</th>
         </tr>
         </thead>
-
         <tbody>
         <tr th:each="index : ${#numbers.sequence( 0, #arrays.length(songs)-1)}">
             <td th:text="${songs[index].title}">dsf</td>
             <td><a th:text="${artists[index].name}" th:href="@{'/artist?artist_id=' + ${artists[index].id}}">a</a></td>
             <td><a th:text="${albums[index]}" th:href="@{'/get_album_songs?name=' + ${albums[index]}}">a</a></td>
             <td th:text="${songs[index].year}"></td>
-            <td th:text="${songs[index].duration}"></td>
+          	<td th:text="${songs[index].durationMins + ':' + songs[index].durationSecs}"></td>
             <td>
                 <form action="remove_song_from_playlist" method="get">
                     <input type="hidden" name="song_id" th:value="${songs[index].id}"/>
                     <input type="hidden" name="playlist_id" th:value="${playlist_id}"/>
-                    <Button type="submit">Remove</Button>
+                    <Button class="addToPlaylist" type="submit">&#128465;</Button>
                 </form>
             </td>
-
         </tr>
         </tbody>
     </table>

@@ -14,32 +14,56 @@
     color: #000;
 }
 
-.content .songList {
-    height: 450px;
-    width: 70%;
-    background-color: powderblue;
-    overflow-y: scroll;
-    padding: 15px;
-}
 
-.content .artistList {
-    height: 450px;
-    width: 70%;
-    background-color: powderblue;
-    overflow-y: scroll;
-    padding: 15px;
-}
 
 tr:hover {
 	background-color: #f1f1f1;
 }
+th {
+	text-align: left;
+}
 
-tr {
-	
+td {
+	border-bottom: 1px solid #cecece !important;
+	padding: 8px;     
 }
 
 tr a {
 	text-decoration: none;
 	color: #d01717;
 	font-weight: bold;
+}
+
+.addToPlaylist {
+	background-color: Transparent;
+	border: none;
+	font-size: 25px;
+	color: black;
+}
+
+.addToPlaylist:hover {
+	font-weight: bold;
+	color: #d01717;
+}
+
+.select-style {
+    border: 1px solid #ccc;
+    width: 120px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fafafa url("img/icon-select.png") no-repeat 90% 50%;
+}
+
+select {
+    padding: 5px 8px;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+select:focus {
+    outline: none;
 }

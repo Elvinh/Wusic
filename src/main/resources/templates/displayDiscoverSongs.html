@@ -6,6 +6,9 @@
     <link rel="icon" type="image/ico" href="images/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet" type="text/css"/>
     <link th:href="@{css/pageLayout.css}" rel="stylesheet"/>
+    <style>
+
+    </style>
 </head>
 <body>
 <div lang="en" th:replace="fragments/header :: header"></div>
@@ -21,7 +24,7 @@
             <th>Artist</th>
             <th>Album</th>
             <th>Year</th>
-            <th>Duration</th>
+            <th>&#128336;</th>
         </tr>
         </thead>
 
@@ -31,18 +34,20 @@
             <td><a th:text="${artists[index].name}" th:href="@{'/artist?artist_id=' + ${artists[index].id}}">a</a></td>
             <td><a th:text="${albums[index]}" th:href="@{'/get_album_songs?name=' + ${albums[index]}}">a</a></td>
             <td th:text="${songs[index].year}"></td>
-            <td th:text="${songs[index].duration}"></td>
+            <td th:text="${songs[index].durationMins + ':' + songs[index].durationSecs}"></td>
             <td>
                 <form action="add_song_to_playlist" method="get">
                     <input type="hidden" name="song_id" th:value="${songs[index].id}"/>
-                    <select name="playlist_id">
-                        <option label="Add to Playlist..."></option>
-                        <div th:each="playlist : ${playlist_options}">
-                            <option th:value="${playlist.id}" th:text="${playlist.name}"></option>
-                        </div>
-                        <option label="+ Create New Playlist"></option>
-                    </select>
-                    <Button type="submit">Add</Button>
+                    <div class="select-style">
+                        <select name="playlist_id">
+	                        <option label="Select a Playlist &#9660;"></option>
+	                        <div th:each="playlist : ${playlist_options}">
+	                            <option th:value="${playlist.id}" th:text="${playlist.name}"></option>
+	                        </div>
+	                        <option label="+ Create New Playlist"></option>
+                    	</select>
+                    </div>
+                    <td><Button class="addToPlaylist" type="submit">&#43;</Button></td>
                 </form>
             </td>
 

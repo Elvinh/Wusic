@@ -5,6 +5,8 @@ public class Song {
 	private String title;
 	private int year;
 	private float duration;
+	private int durationMins;
+	private int durationSecs;
 	
 	public Song(String id, String title, int year, float duration) {
 		this.id = id;
@@ -49,8 +51,15 @@ public class Song {
 	public void setDuration(float duration) {
 		this.duration = duration;
 	}
-	
-	
+
+	public int getDurationMins() {
+		return (int) ((duration % 3600) / 60);
+	}
+
+	public int getDurationSecs() {
+		return (int) (duration % 60);
+	}
+
 	
 	
 }

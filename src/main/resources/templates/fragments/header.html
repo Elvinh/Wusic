@@ -24,6 +24,7 @@
 
     <form class="searchBar" method="get" th:action="@{/search}">
         <input type="text" name="query" placeholder="Search by song..."></input>
+        <input type="hidden" name="type" value="song"></input>
     </form>
 
 
@@ -39,9 +40,11 @@
 
 
     <div sec:authorize="isAuthenticated()">
-        <form class="login" th:action="@{/logout}" method="post">
-            <input class="logout" type="submit" value="Logout"/>
-        </form>
+    	<div class="logout">
+    	    <form class="logout" th:action="@{/logout}" method="post">
+            	<input class="logout" type="submit" value="Logout"/>
+        	</form>
+    	</div>
     </div>
 
 </header>

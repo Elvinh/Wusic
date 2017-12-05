@@ -122,10 +122,25 @@
 }
 
 .logout {
+
     flex-shrink: 0;
 	font-family: 'Titillium Web', sans-serif;
-
+	border-bottom: solid #d01717 1.5px;
  }
+ 
+ .logout input {
+     display: block;
+         color: #d01717;
+ 	background: transparent;
+ 	border: none;
+	    padding: 26px 25px;
+ 	    font-size: 15px;
+ }
+ 
+ .logout input:hover {
+    background-color: #d01717;
+    color: white;
+}
 
 .logout a {
     display: block;
