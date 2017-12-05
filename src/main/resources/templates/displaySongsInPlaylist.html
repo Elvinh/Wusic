@@ -6,13 +6,18 @@
     <link rel="icon" type="image/ico" href="images/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet" type="text/css"/>
     <link th:href="@{css/pageLayout.css}" rel="stylesheet"/>
+    <style>
+    	.playlistName {
+   			 font-size: 50px;
+    	}
+    </style>
 </head>
 <body>
 <div lang="en" th:replace="fragments/header :: header"></div>
 <div lang="en" th:replace="fragments/sidebar :: sidebar"></div>
 
 <div class="content">
-    <h1 th:text="'Playlist ' + ${playlist_name}"></h1>
+    <h1 class="playlistName" th:text="${playlist_name}"></h1>
     <table>
         <thead>
         <tr>
