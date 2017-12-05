@@ -3,6 +3,7 @@ package com.sjsu.wusic.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sjsu.wusic.dao.SongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -24,19 +25,19 @@ public class SearchController {
 
     @Autowired
     private SearchRepository searchDao;
-    
+
+    @Autowired
+    private SongRepository songDao;
+
     @Autowired
     private PlaylistsByUserRepository playlistDao;
-    
-	@Autowired
-	private SongRepository songDao;
 	
 	@Autowired
 	private PlaylistsByUserRepository playlistsByUserDao;
 
     @RequestMapping("/search")
     public String artist(Model model, @RequestParam(value = "query") String query, @RequestParam(value = "type") String type) {
-    	
+
         List<Playlist> playlists = playlistDao.playlistsByUser(SecurityContextHolder.getContext().getAuthentication().getName());
         model.addAttribute("playlist_options", playlists);
         
@@ -67,16 +68,15 @@ public class SearchController {
     	}
     	else if(type.equals("genre")) {
             List<Genre> genreResults = searchDao.findGenres(query);
-        	model.addAttribute("genres", genreResults);
-        	return "displayGenres";
-    	}
-    	else if(type.equals("album")) {
+            model.addAttribute("genres", genreResults);
+            return "displayGenres";
+
+        } else if (type.equals("album")) {
             List<Album> albumResults = searchDao.findAlbums(query);
-    		model.addAttribute("albums", albumResults);
-    		return "displayDiscoverAlbums";
-    	}
-		return "error";
+            model.addAttribute("albums", albumResults);
+            return "displayDiscoverAlbums";
+        }
 
-
+        return "error";
     }
 }

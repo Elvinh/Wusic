@@ -39,10 +39,9 @@ public class SongController {
 	
 	@RequestMapping("/discover_songs")
 	public String song(Model model) {
+		List<Song> songs= songDao.findAllSongs();
 		List<Artist> artists = new ArrayList<>();
 		List<String> albums = new ArrayList<>();
-		
-		List<Song> songs= songDao.findAllSongs();
 
 		for(Song song : songs) {
 			Artist artist = songDao.findArtistOfSong(song.getId());
