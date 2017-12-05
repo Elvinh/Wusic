@@ -56,13 +56,13 @@ public class UserRepository {
 	 * @return a List of Users following a user with a given id 
 	 */
 	public List<User> getUserFollowing(String username) {
-		
+
 		List<User> userFollowing = new ArrayList<>();
-		
-        List<Map<String, Object>> maps =
-                jdbcTemplate.queryForList("SELECT fg.name, fg.username FROM user_follows_user INNER JOIN users fg "
-                		+ "INNER JOIN users fr WHERE fg.username = following_id AND fr.username = follower_id "
-                		+ "AND fr.username = ?; ", username);
+
+		List<Map<String, Object>> maps =
+				jdbcTemplate.queryForList("SELECT fg.name, fg.username FROM user_follows_user INNER JOIN users fg "
+						+ "INNER JOIN users fr WHERE fg.username = following_id AND fr.username = follower_id "
+						+ "AND fr.username = ?; ", username);
 
 		for (Map<String, Object> map : maps) {
 			User user = new User();
@@ -74,7 +74,24 @@ public class UserRepository {
 
 		return userFollowing;
 	}	
-	
+
+	public List<User> getAllUsers() {
+
+		List<User> users = new ArrayList<>();
+
+		List<Map<String, Object>> maps = jdbcTemplate.queryForList("SELECT * FROM users");
+
+		for(Map<String, Object> map : maps) {
+			User user = new User();
+			user.setUsername((String) map.get("username"));
+			user.setName((String) map.get("name"));
+
+			users.add(user);
+		}
+
+		return users;
+	}
+
 	class UserMapper implements RowMapper {
 
 		@Override

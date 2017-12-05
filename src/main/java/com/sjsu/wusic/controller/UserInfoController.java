@@ -44,4 +44,15 @@ public class UserInfoController {
 		
 		return "displayUserInfo";
 	}
+
+	@RequestMapping("/users")
+	public String allUsers(Model model) {
+
+		List<User> users = userDao.getAllUsers();
+
+		model.addAttribute("users", users);
+
+		return "displayAllUsers";
+	}
+
 }

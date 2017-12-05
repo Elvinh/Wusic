@@ -44,8 +44,6 @@ public class SongController {
 		List<Playlist> playlists = playlistsByUserDao.playlistsByUser(
 				SecurityContextHolder.getContext().getAuthentication().getName());
 
-		System.out.println("playlist options: " + playlists.size());
-
 		model.addAttribute("playlist_options", playlists);
 
 		return "displayDiscoverSongs";
