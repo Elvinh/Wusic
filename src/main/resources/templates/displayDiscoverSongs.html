@@ -33,10 +33,16 @@
             <td th:text="${songs[index].year}"></td>
             <td th:text="${songs[index].duration}"></td>
             <td>
-                <form action="remove_song_from_playlist" method="get">
+                <form action="add_song_to_playlist" method="get">
                     <input type="hidden" name="song_id" th:value="${songs[index].id}"/>
-                    <input type="hidden" name="playlist_id" th:value="${playlist_id}"/>
-                    <Button type="submit">Remove</Button>
+                    <select name="playlist_id">
+                        <option label="Add to Playlist..."></option>
+                        <div th:each="playlist : ${playlist_options}">
+                            <option th:value="${playlist.id}" th:text="${playlist.name}"></option>
+                        </div>
+                        <option label="+ Create New Playlist"></option>
+                    </select>
+                    <Button type="submit">Add</Button>
                 </form>
             </td>
 
