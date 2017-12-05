@@ -22,14 +22,13 @@
         </div>
     </div>
 
-    <form class="searchBar" method="get" action="">
-        <input type="hidden" name="browseBy" value="advSearch"></input>
-        <input type="text" name="advTitle" placeholder="Search by artist or genre..."></input>
+    <form class="searchBar" method="get" th:action="@{/search}">
+        <input type="text" name="query" placeholder="Search by artist or genre..."></input>
     </form>
 
 
     <div class="advSearch">
-        <a href="advSearch">Advanced Search</a>
+        <a th:href="advSearch">Advanced Search</a>
     </div>
 
     <div sec:authorize="isAnonymous()">

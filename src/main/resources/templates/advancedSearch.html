@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+	.AdvSearch
+	{
+		margin: auto;
+		position: absolute;
+		display: inline-block;
+		width: 50%;
+		top:0;
+		left:0;
+		bottom:0;
+		right: 0;
+		height: 60%;
+
+	
+	}
+	.container
+	{
+		padding: 16px;
+		font: Tahoma;
+		border-style: solid;
+		border-color: #d01717;
+
+		background-color: #2c2d30;
+		height: 70%;
+	}
+	label
+	{
+		color: white;
+		font-family: 'Open Sans Condensed', sans-serif;
+	}
+	input[type=text]
+	{
+		width: 100%;
+		padding: 12px, 20px;
+		margin: 8px;
+		display: inline-block;
+		box-sizing: border-box;
+		font: Tahoma;
+		margin: 8px 0;
+	}
+	.SearchBtn
+	{
+		background-color: #d01717;
+		color: white;
+		padding: 14px 20px;
+		margin: 8px 0;
+		border: none;
+		cursor: pointer;
+		width:100%;
+		font: Tahoma;
+	}
+	.SearchBtn:hover
+	{
+		opacity: 0.8;
+	}
+	h2
+	{
+		color: black;
+		font-family: 'Open Sans Condensed', sans-serif;
+		text-align: center;
+	}
+</style>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+<title>Insert title here</title>
+</head>
+<body>
+	<div lang="en" th:replace="fragments/header :: header"></div>
+	<div lang="en" th:replace="fragments/sidebar :: sidebar"></div>
+
+	<div class="AdvSearch">
+	<h2>Advanced Search</h2>
+		<div class = "container">
+			<label>Search</label>                
+			<form method="get" th:action="@{/search}">
+				<input type = "text" placeholder = "search for..." name = "query"/>
+				<select name="type">
+                        <option label="song" value="song"></option>
+                        <option label="artist" value="artist"></option>
+                        <option label="genre" value="gere"></option>
+                        <option label="album" value="album"></option>
+                </select>
+				<button type="submit" class="SearchBtn">Search</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

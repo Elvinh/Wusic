@@ -24,4 +24,9 @@ public class DefaultController {
     public String user() {
         return "hello";
     }
+    
+    @GetMapping("/advSearch")
+    public String advSearch() {
+        return "advancedSearch";
+    }
 }
