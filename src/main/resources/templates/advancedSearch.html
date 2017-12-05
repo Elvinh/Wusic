@@ -7,12 +7,12 @@
 		margin: auto;
 		position: absolute;
 		display: inline-block;
-		width: 50%;
+		width: 20%;
 		top:0;
 		left:0;
 		bottom:0;
 		right: 0;
-		height: 60%;
+		height: 30%;
 
 	
 	}
@@ -34,12 +34,19 @@
 	input[type=text]
 	{
 		width: 100%;
-		padding: 12px, 20px;
 		margin: 8px;
 		display: inline-block;
 		box-sizing: border-box;
-		font: Tahoma;
 		margin: 8px 0;
+			border-radius:15px; 
+	-moz-border-radius:15px; 
+	-webkit-border-radius:15px; 
+   	font-size: 13px;
+   	border: none;
+   	    padding: 12px 20px 12px 40px;
+   	       	outline: none;
+   	    
+   	
 	}
 	.SearchBtn
 	{
@@ -62,6 +69,30 @@
 		font-family: 'Open Sans Condensed', sans-serif;
 		text-align: center;
 	}
+	
+	.select-style {
+    border: 1px solid #ccc;
+    width: 50px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fafafa url("img/icon-select.png") no-repeat 90% 50%;
+    display:inline-block;
+    
+}
+
+.select-style select {
+    padding: 1px 8px;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+.select-style select:focus {
+    outline: none;
+}
 </style>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
@@ -74,15 +105,18 @@
 	<div class="AdvSearch">
 	<h2>Advanced Search</h2>
 		<div class = "container">
-			<label>Search</label>                
-			<form method="get" th:action="@{/search}">
-				<input type = "text" placeholder = "search for..." name = "query"/>
-				<select name="type">
+			<label>Search by </label> 
+				<div class="select-style">
+					<select name="type">
                         <option label="song" value="song"></option>
                         <option label="artist" value="artist"></option>
                         <option label="genre" value="genre"></option>
                         <option label="album" value="album"></option>
-                </select>
+                	</select>  
+				</div>
+			<form method="get" th:action="@{/search}">
+				<input type = "text" placeholder = "" name = "query"/>
+
 				<button type="submit" class="SearchBtn">Search</button>
 			</form>
 		</div>

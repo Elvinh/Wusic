@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet" type="text/css"/>
     <link th:href="@{css/pageLayout.css}" rel="stylesheet"/>
     <style>
-		a {
+		.artistname {
 			text-decoration: none;
 			color: #d01717;
 			font-weight: bold;
@@ -20,7 +20,7 @@
 
 <div class="content">
     <h1 th:text="${album_name}"></h1>
-    <h2><a th:text="${artist.name}" th:href="@{'/artist?artist_id=' + ${artist.id}}">a</a></h2>
+    <h2><a class="artistname" th:text="${artist.name}" th:href="@{'/artist?artist_id=' + ${artist.id}}">a</a></h2>
     
     <table>
 
